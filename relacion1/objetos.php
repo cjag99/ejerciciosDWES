@@ -14,10 +14,10 @@
     class Fruta
     {
         //Atributos o propiedades
-        public $name;
-        public $colour;
+        private $name;      //Recordar visibilidad de atributos (public, private, protected)
+        private $colour;
         //Métodos o funciones
-        public function __construct($name, $colour)
+        public function __construct($name, $colour)     //Idem para funciones
         {
             $this->name = $name;
             $this->colour = $colour;
@@ -33,6 +33,10 @@
         public function get_colour()
         {
             return $this->colour;
+        }
+        public function set_colour($colour)
+        {
+            $this->colour = $colour;
         }
     }
 
