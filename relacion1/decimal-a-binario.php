@@ -15,14 +15,14 @@
     $numAlmacenado = $decimal;
     $binario = "";
     if ($decimal == 0) {
-        $binario = "0";
+        echo "El número decimal $decimal en binario es: 0";
     } else {
         while ($numAlmacenado >= 2) {
             $binario = (string) $numAlmacenado % 2 . $binario;
             $numAlmacenado = intval($numAlmacenado / 2);
         }
+        echo "El número decimal $decimal en binario es: 1" . $binario;
     }
-    echo "El número decimal $decimal en binario es: 1" . $binario;
     ?>
 </body>
 

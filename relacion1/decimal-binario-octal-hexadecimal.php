@@ -11,7 +11,7 @@
 <body>
     <h1>Conversión de decimal por bits: binario, octal, hexadecimal</h1>
     <?php
-    $decimal = 360;
+    $decimal = 175;
     $numAlmacenado = $decimal;
     $base = 16;
     $resultado = "";
@@ -30,7 +30,12 @@
             $resultado = $caracter .  $resultado;
             $numAlmacenado = intval($numAlmacenado / $base);
         }
-        echo (string) $numAlmacenado . $resultado;
+        if ($numAlmacenado > 9) {
+            $caracter = chr(55 + $numAlmacenado);
+        } else {
+            $caracter = (string) $numAlmacenado;
+        }
+        echo $caracter . $resultado;
     }
     ?>
 
