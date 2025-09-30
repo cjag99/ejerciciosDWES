@@ -13,7 +13,7 @@
     <?php
     $a = 2;
     $b = 0;
-    $c = 2;
+    $c = 0;
     echo "<p>Para la ecuación: ax² + bx + c = 0<br>Tenemos los siguiente valores:</p>";
     echo "<ul><li>a = $a</li><li>b = $b</li><li>c = $c</li></ul>";
     if ($a == 0) {
@@ -27,22 +27,18 @@
         if ($a == 0) {
             echo "<p>La ecuación no tiene soluciones reales.</p>";
         } else {
-            if (-$c / $a > 0) {
+            if (-$c / $a < 0) {
+                echo "<p>La ecuación no tiene soluciones reales.</p>";
+            } else {
                 $x1 = sqrt(-$c / $a);
                 $x2 = -sqrt(-$c / $a);
                 echo "<p>La ecuación tiene dos soluciones reales: x1 = $x1 y x2 = $x2</p>";
-            } else {
-                echo "<p>La ecuación no tiene soluciones reales.</p>";
             }
         }
     } elseif ($c == 0) {
-        if ($a == 0) {
-            echo "<p>La ecuación no tiene soluciones reales.</p>";
-        } else {
-            $x1 = 0;
-            $x2 = -$b / $a;
-            echo "<p>La ecuación tiene dos soluciones reales: x1 = $x1 y x2 = $x2</p>";
-        }
+        $x1 = 0;
+        $x2 = -$b / $a;
+        echo "<p>La ecuación tiene dos soluciones reales: x1 = $x1 y x2 = $x2</p>";
     } else {
         $discriminante = ($b ** 2) - (4 * $a * $c);
         if ($discriminante > 0) {
