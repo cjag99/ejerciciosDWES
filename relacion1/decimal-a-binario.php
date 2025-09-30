@@ -11,22 +11,18 @@
 <body>
     <h1>Decimal a binario en php</h1>
     <?php
-    $decimal = 100;
+    $decimal = 33;
     $numAlmacenado = $decimal;
-    $binario = [];
+    $binario = "";
     if ($decimal == 0) {
-        array_push($binario, 0);
+        $binario = "0";
     } else {
-        while ($numAlmacenado >= 1) {
-            array_push($binario, $numAlmacenado % 2);
-            $numAlmacenado /= 2;
+        while ($numAlmacenado >= 2) {
+            $binario = (string) $numAlmacenado % 2 . $binario;
+            $numAlmacenado = intval($numAlmacenado / 2);
         }
     }
-    $binario = array_reverse($binario);
-    echo "El número decimal $decimal en binario es: ";
-    foreach ($binario as $bit) {
-        echo $bit;
-    }
+    echo "El número decimal $decimal en binario es: 1" . $binario;
     ?>
 </body>
 
