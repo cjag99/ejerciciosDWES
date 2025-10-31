@@ -30,58 +30,50 @@
             $tiradas = intval($_GET['num']);
             echo "<br><h3 class='text-primary'>Tiramos el dado $tiradas veces:</h3>";
             echo "<div class='d-flex flex-row justify-content-center align-items-center mt-4'>";
-            $dadoNormal = [0, 0, 0, 0, 0, 0];
-            $dadoTrucado = [0, 0, 0, 0, 0, 0];
+            $dadoNormal = array_fill(1, 6, 0);
+            $dadoTrucado = array_fill(1, 6, 0);
             for ($i = 0; $i < $tiradas; $i++) {
-                $tirada = mt_rand(1, 6);
-                $tiradaTrucada = mt_rand(125, 1000);
+                $tirada = rand(1, 6);
+                $tiradaTrucada = rand(1, 8);
                 switch ($tirada) {
                     case 1:
-                        $dadoNormal[$tirada - 1]++;
+                        $dadoNormal[$tirada]++;
                         break;
                     case 2:
-                        $dadoNormal[$tirada - 1]++;
+                        $dadoNormal[$tirada]++;
                         break;
                     case 3:
-                        $dadoNormal[$tirada - 1]++;
+                        $dadoNormal[$tirada]++;
                         break;
                     case 4:
-                        $dadoNormal[$tirada - 1]++;
+                        $dadoNormal[$tirada]++;
                         break;
                     case 5:
-                        $dadoNormal[$tirada - 1]++;
+                        $dadoNormal[$tirada]++;
                         break;
                     case 6:
-                        $dadoNormal[$tirada - 1]++;
+                        $dadoNormal[$tirada]++;
                         break;
                 }
-                if ($tiradaTrucada == 125) {
-                    $dadoTrucado[0]++;
-                } elseif ($tiradaTrucada <= 250) {
-                    $dadoTrucado[1]++;
-                } elseif ($tiradaTrucada <= 375) {
-                    $dadoTrucado[2]++;
-                } elseif ($tiradaTrucada <= 500) {
-                    $dadoTrucado[3]++;
-                } elseif ($tiradaTrucada <= 625) {
-                    $dadoTrucado[4]++;
+                if ($tiradaTrucada < 6) {
+                    $dadoTrucado[$tiradaTrucada]++;
                 } else {
-                    $dadoTrucado[5]++;
+                    $dadoTrucado[6]++;
                 }
             }
             echo "<div class='text-center me-5'>";
             echo "<p class='mt-2'>Tiradas con dado equiprobable:</p>";
             echo "<ul>";
-            for ($i = 1; $i <= count($dadoNormal); $i++) {
-                echo "<li>Tirada $i: " . ($dadoNormal[$i - 1] / $tiradas) * 100 . "%</li>";
+            foreach ($dadoNormal as $index => $porcentaje) {
+                echo "<li>Tirada $index: " . number_format((($porcentaje / $tiradas) * 100), 2) . "%</li>";
             }
             echo "</ul>";
             echo "</div>";
             echo "<div class='text-center'>";
             echo "<p class='mt-2'>Tiradas con dado trucado:</p>";
             echo "<ul>";
-            for ($i = 1; $i <= count($dadoTrucado); $i++) {
-                echo "<li>Tirada $i: " . ($dadoTrucado[$i - 1] / $tiradas) * 100 . "%</li>";
+            foreach ($dadoTrucado as $index => $porcentajeTrucado) {
+                echo "<li>Tirada $index: " . number_format((($porcentajeTrucado / $tiradas) * 100), 2) . "%</li>";
             }
             echo "</ul></div>";
             echo "</div>";
