@@ -11,15 +11,15 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
         crossorigin="anonymous" />
     <link rel="stylesheet" href="../Bootstrap Templates/src/styles/formStyle.css">
-
+    
 </head>
 
 <body>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center mt-5">
         <button class="btn btn-success me-md-2" type="button" onclick="formLowerUpper()">Formulario Mayus & Minus</button>
         <button class="btn btn-primary me-md-2" type="button" onclick="formLowerOrUpper()">Formulario Mayus || Minus</button>
     </div>
-    <div class="d-flex flex-column justify-content-center align-items-center vh-100" id="form">
+    <div class="d-flex flex-column justify-content-center align-items-center mt-5" id="form">
         <form
             action="<?php echo $_SERVER['PHP_SELF'] ?>"
             class="border border-0 rounded-4 shadow-lg p-4 p-4 bg-secondary bg-opacity-25"
@@ -73,38 +73,44 @@
             </div>
     </div>
     </form>
-    </div>
+     <div class="result-area text-center mt-2 w-100">
+
     <?php
     function textoLower()
     {
         if (isset($_GET['texto'])) {
             $texto = $_GET['texto'];
-            echo "<br><div class='text-center me-5'><p>El texto $texto en minúsculas es: <b>" . strtolower($texto) . "</b></p></div>";
+            echo "<p class='text-center mt-1 mb-0'>El texto $texto en minúsculas es: <b>" . strtolower($texto) . "</b></p>";
         }
     }
     function textoUpper()
     {
         if (isset($_GET['texto'])) {
             $texto = $_GET['texto'];
-            echo "<br><div class='text-center me-5'><p>El texto $texto en mayúsculas es: <b>" . strtoupper($texto) . "</b></p></div>";
+            echo "<p class='text-center mt-1 mb-0'>El texto $texto en mayúsculas es: <b>" . strtoupper($texto) . "</b></p>";
         }
     }
+
     if (isset($_GET['tipo'])) {
-        if (isset($_GET['tipo']) == 'form1') {
+        if ($_GET['tipo'] == 'form1') {
             textoLower();
             textoUpper();
-        } elseif (isset($_GET['tipo']) == 'form2') {
-            if (isset($_GET['check1'])) {
+        } elseif ($_GET['tipo'] == 'form2') {
+            if (isset($_GET['check1']) && isset($_GET['check2'])) {
+                textoUpper();
+                textoLower();
+            } elseif (isset($_GET['check1'])) {
                 textoUpper();
             } elseif (isset($_GET['check2'])) {
                 textoLower();
             } else {
-                echo "<br><div class='text-center me-5'><p>No se ha seleccionado ninguna opción de formateo de texto</p></div>";
+                echo "<div class='text-center mt-1 mb-0'><p>No se ha seleccionado ninguna opción de formateo de texto</p></div>";
             }
         }
     }
-
     ?>
+     </div>
+    </div>
     <script
         src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
