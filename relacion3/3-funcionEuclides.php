@@ -29,7 +29,7 @@
                 <button class="btn btn-success me-md-2" type="submit">Enviar</button>
             </div>
         </form>
-        <?php include './4-relacion3.php';
+        <?php include './functionsRel3.php';
         /*function divisionEuclides($dividendo, $divisor)
         {
             if ($dividendo < 0 || $divisor < 0) {

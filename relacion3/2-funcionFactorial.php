@@ -23,7 +23,7 @@
             <button class="btn btn-primary me-md-2" type="submit">Enviar</button>
         </div>
     </form>
-    <?php include './4-relacion3.php';
+    <?php include './functionsRel3.php';
     /*function factorial($num)
     {
         if (intval($num) == 1) {

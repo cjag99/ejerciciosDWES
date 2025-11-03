@@ -25,7 +25,7 @@
                 <button class="btn btn-success me-md-2" type="submit">Enviar</button>
             </div>
         </form>
-        <?php include './4-relacion3.php';
+        <?php include './functionsRel3.php';
         /*function mostrarPrimos($num)
         {
             echo "<div class='mt-4 text-center'>";

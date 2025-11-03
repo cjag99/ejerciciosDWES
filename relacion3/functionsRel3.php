@@ -57,3 +57,16 @@ function mcdEuclides($num1, $num2)
         return mcdEuclides($num1, $num2 - $num1);
     }
 }
+function swap(&$var1, &$var2)
+{
+    $temp = $var1;
+    $var1 = $var2;
+    $var2 = $temp;
+}
+function invertirArray(&$array)
+{
+    $n = count($array);
+    for ($i = 0; $i < $n / 2; $i++) {
+        swap($array[$i], $array[$n - $i - 1]);
+    }
+}
