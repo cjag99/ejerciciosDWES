@@ -19,7 +19,7 @@
             <label for="numSuge">Introduzca el nº de sugerencias de menú:</label> <br>
             <input type="number" name="numSuge" id="numSuge" required>
             <button type="submit">Generar sugerencias</button>
-        </form>
+        </form> <br><br>
         <?php
         $menu = [
             'Entrante' => array('Ensalada César', 'Hummus', 'Boquerones al natural'),
@@ -35,7 +35,7 @@
 
             echo '<div class="container mt-4">';
             echo '<h2 class="text-secondary mb-4 text-center">Sugerencias del menú</h2>';
-            echo '<div class="row row-cols-1 row-cols-md-3 g-4">';
+            echo '<div class="row row-cols-1  row-cols-lg-2 row-cols-xl-3 g-4">';
             $categorias = array_keys($menu);
             $ultimaSugerencia = [];
 
