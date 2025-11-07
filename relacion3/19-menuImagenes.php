@@ -60,8 +60,8 @@
                     echo '<div class="col">';
                     echo '<div class="card border-0 shadow-sm rounded-4 text-center">';
                     echo '<img src="' . $imagen . '" alt="' . $plato . '" 
-                            class="img-fluid rounded-top-4"
-                            style="width:100%; height:120px; object-fit:cover;">';
+                            class="img-fluid w-100 object-fit-cover rounded-top-4"
+                            style="height:120px">';
                     echo '<div class="card-body p-2">';
                     echo '<p class="card-text mb-1 fw-semibold text-secondary" style="font-size:0.9rem;">' . $categoria . '</p>';
                     echo '<p class="card-text text-dark" style="font-size:0.95rem;">' . $plato . '</p>';
