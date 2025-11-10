@@ -11,7 +11,7 @@
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
         crossorigin="anonymous" />
     <link rel="stylesheet" href="../Bootstrap Templates/src/styles/formStyle.css">
-    
+
 </head>
 
 <body>
@@ -73,43 +73,43 @@
             </div>
     </div>
     </form>
-     <div class="result-area text-center mt-2 w-100">
+    <div class="result-area text-center mt-2 w-100">
 
-    <?php
-    function textoLower()
-    {
-        if (isset($_GET['texto'])) {
-            $texto = $_GET['texto'];
-            echo "<p class='text-center mt-1 mb-0'>El texto $texto en minúsculas es: <b>" . strtolower($texto) . "</b></p>";
-        }
-    }
-    function textoUpper()
-    {
-        if (isset($_GET['texto'])) {
-            $texto = $_GET['texto'];
-            echo "<p class='text-center mt-1 mb-0'>El texto $texto en mayúsculas es: <b>" . strtoupper($texto) . "</b></p>";
-        }
-    }
-
-    if (isset($_GET['tipo'])) {
-        if ($_GET['tipo'] == 'form1') {
-            textoLower();
-            textoUpper();
-        } elseif ($_GET['tipo'] == 'form2') {
-            if (isset($_GET['check1']) && isset($_GET['check2'])) {
-                textoUpper();
-                textoLower();
-            } elseif (isset($_GET['check1'])) {
-                textoUpper();
-            } elseif (isset($_GET['check2'])) {
-                textoLower();
-            } else {
-                echo "<div class='text-center mt-1 mb-0'><p>No se ha seleccionado ninguna opción de formateo de texto</p></div>";
+        <?php
+        function textoLower()
+        {
+            if (isset($_GET['texto'])) {
+                $texto = $_GET['texto'];
+                echo "<p class='text-center mt-1 mb-0'>El texto $texto en minúsculas es: <b>" . strtolower($texto) . "</b></p>";
             }
         }
-    }
-    ?>
-     </div>
+        function textoUpper()
+        {
+            if (isset($_GET['texto'])) {
+                $texto = $_GET['texto'];
+                echo "<p class='text-center mt-1 mb-0'>El texto $texto en mayúsculas es: <b>" . strtoupper($texto) . "</b></p>";
+            }
+        }
+
+        if (isset($_GET['tipo'])) {
+            if ($_GET['tipo'] == 'form1') {
+                textoLower();
+                textoUpper();
+            } elseif ($_GET['tipo'] == 'form2') {
+                if (isset($_GET['check1']) && isset($_GET['check2'])) {
+                    textoUpper();
+                    textoLower();
+                } elseif (isset($_GET['check1'])) {
+                    textoUpper();
+                } elseif (isset($_GET['check2'])) {
+                    textoLower();
+                } else {
+                    echo "<div class='text-center mt-1 mb-0'><p>No se ha seleccionado ninguna opción de formateo de texto</p></div>";
+                }
+            }
+        }
+        ?>
+    </div>
     </div>
     <script
         src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -119,7 +119,7 @@
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
         integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
         crossorigin="anonymous"></script>
-    <script src="index.js"></script>
+    <script src="./main.js"></script>
 </body>
 
 </html>
