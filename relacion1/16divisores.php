@@ -9,6 +9,11 @@
 </head>
 
 <body>
+    <!--
+        Muestra los divisores de un número
+        - Se resaltan en rojo los divisores; el algoritmo recorre todos los enteros desde 1 hasta n.
+        - Para números grandes, usar un algoritmo que compruebe hasta sqrt(n) y agregue pares.
+    -->
     <h1>Divisores con estilo en php</h1>
     <?php
     $numero = 10;

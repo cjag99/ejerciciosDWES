@@ -9,6 +9,12 @@
 </head>
 
 <body>
+    <!--
+        Demostración de tipos escalares en PHP
+        - Muestra enteros, floats, strings y booleanos.
+        - Ejemplos de inspección: var_dump() y printf() con formato.
+        - Útil para ver representación y formato de salida.
+    -->
     <h1>Variables y datos escalares en php</h1>
     <?php
     $numero = 123; //Variable de tipo entero
@@ -19,7 +25,7 @@
     echo "Variable decimal: $decimal<br>";
     echo "Variable texto: $texto<br>";
     echo "Variable booleano: $booleano<br>"; //Muestra 1 si es true y nada si es false
-    var_dump($numero); //Muestra el tipo y el valor de la variable
+    var_dump($numero); //Muestra el tipo y el valor de la variable (diagnóstico)
     echo "<br>";
     var_dump($decimal);
     echo "<br>";
@@ -27,6 +33,7 @@
     echo "<br>";
     var_dump($booleano);
     echo "<br>";
+    // printf() permite formatear salida; %d -> entero, %.2f -> float con 2 decimales
     printf("El numero es %d y el decimal es %.2f", $numero, $decimal); //Muestra el valor de las variables con formato
     printf("<br>El texto es %s", $texto);
     printf("<br>El booleano es %d", $booleano); //Muestra 1 si es true y 0 si es false

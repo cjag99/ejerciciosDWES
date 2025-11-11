@@ -40,6 +40,7 @@
             </div>
         </form>
         <?php
+        // Utilidades de manejo de strings: palíndromo, invertir palabras, mayúsculas/minúsculas, conteos y encriptados
         function esPalindromo($texto)
         {
             $mensaje = "";
@@ -48,10 +49,12 @@
             } else {
                 $mensaje = "La cadena no es palíndroma";
             }
+            // Muestra la cadena invertida y si es palíndroma
             echo "<div class='alert alert-primary' role='alert'>$texto del revés: " . strrev($texto) . "<br>$mensaje</div>";
         }
         function palabrasRevertidas($texto)
         {
+            // Devuelve la cadena con el orden de palabras invertido
             $palabras = explode(" ", $texto);
             $palabrasInvertidas = array_reverse($palabras);
             $textoInvertido = implode(" ", $palabrasInvertidas);
@@ -59,16 +62,19 @@
         }
         function mayusMinus($texto)
         {
+            // Muestra la cadena en minúsculas y en mayúsculas
             echo "<div class='alert alert-success' role='alert'>La cadena $texto en minúsculas es: " . strtolower($texto) . "</div>";
             echo "<div class='alert alert-danger' role='alert'>La cadena $texto en mayúsculas es: " . strtoupper($texto) . "</div>";
         }
         function recuentoString($texto)
         {
+            // strlen cuenta caracteres; str_word_count cuenta palabras
             echo "<div class='alert alert-warning' role='alert'>La cadena $texto tiene " . strlen($texto) . " caracteres</div>";
             echo "<div class='alert alert-info' role='alert'>La cadena $texto tiene " . str_word_count($texto) . " palabras</div>";
         }
         function encriptarTexto($texto)
         {
+            // Ejemplos de funciones hash/crypt; notar que crypt/md5/sha1 no se deben usar para almacenar contraseñas en producción
             echo "<div class='alert alert-warning' role='alert'> $texto con crypt: " . crypt($texto, 'st') . "</div>";
             echo "<div class='alert alert-info' role='alert'>$texto con md5: " . md5($texto) .  " palabras</div>";
             echo "<div class='alert alert-success' role='alert'>$texto con sha1: " . sha1($texto) .  " caracteres</div>";

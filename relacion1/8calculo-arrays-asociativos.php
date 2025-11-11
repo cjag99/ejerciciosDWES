@@ -9,6 +9,12 @@
 </head>
 
 <body>
+    <!--
+        Cálculo de nota con rúbrica
+        - $rubrica contiene pesos (suma esperada 1.0) y $notaAlumno las calificaciones correspondientes.
+        - El código recorre ambos arrays y calcula la nota ponderada.
+        - Asegúrate de que las claves coincidan entre rúbrica y notas para evitar errores.
+    -->
     <h1>Cálculo de notas con rúbrica en php</h1>
     <?php
     $rubrica = [
@@ -36,8 +42,12 @@
         echo "<li>$key: $value</li>";
     }
     echo "</ul>";
+    // Sumar cada componente ponderado: peso * nota
     foreach ($rubrica as $key => $value) {
-        $notaFinal += $value * $notaAlumno[$key];
+        // Asegurarse que la clave exista en $notaAlumno
+        if (isset($notaAlumno[$key])) {
+            $notaFinal += $value * $notaAlumno[$key];
+        }
     }
     if ($notaFinal < 5) {
         echo "El alumno ha suspendido con un " . $notaFinal;

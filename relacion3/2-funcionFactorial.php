@@ -17,13 +17,14 @@
         <h1 class="mb-4 text-center text-primary fw-bold">2- Función para factorial de número</h1>
         <div class="mb-3">
             <label for="num" class="form-label">Introduzca un nº entero: </label> <br>
-            <input type="number" name="num" id="num" class="form-control rounded-3 bg-secondary bg-opacity-25 border border-black"> <br>
+            <input type="number" name="num" id="num" class="form-control rounded-3 bg-secondary bg-opacity-25 border "> <br>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
             <button class="btn btn-primary me-md-2" type="submit">Enviar</button>
         </div>
     </form>
     <?php include './functionsRel3.php';
+    // Usamos la función factorial() definida en functionsRel3.php
     /*function factorial($num)
     {
         if (intval($num) == 1) {
@@ -33,7 +34,8 @@
         }
     }*/
     if (isset($_GET['num'])) {
-        $numero = $_GET['num'];
+        // Validar/normalizar entrada y llamar a la función recursiva factorial()
+        $numero = intval($_GET['num']);
         $factorial = factorial($numero);
         echo "<div class='mt-4 text-center'>";
 

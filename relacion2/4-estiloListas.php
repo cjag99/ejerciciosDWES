@@ -19,6 +19,8 @@
         <h1 class="text-center text-primary mb-5">Arrays en PHP</h1>
 
         <?php
+        // Constante con los nombres de los días de la semana.
+        // Uso: se itera para mostrar listados numerados y badges con el número de día.
         const DIASSEMANA = [
             "Lunes",
             "Martes",
@@ -34,11 +36,14 @@
         echo '<h2 class="card-title text-secondary mb-3">Días de la semana</h2>';
         echo "<p class='mb-3'>El primer día de la semana es <strong>" . DIASSEMANA[0] . "</strong>.</p>";
 
+        // Genera una lista numerada con formato Bootstrap.
+        // El bucle recorre DIASSEMANA y añade un badge con el número de día.
         echo '<h5 class="text-muted">Listado de días:</h5>';
         echo '<ol class="list-group list-group-numbered">';
         for ($i = 0; $i < count(DIASSEMANA); $i++) {
             echo '<li class="list-group-item d-flex justify-content-between align-items-center">';
             echo DIASSEMANA[$i];
+            // Badge que muestra el índice (1-based) del día
             echo '<span class="badge bg-primary rounded-pill">Día ' . ($i + 1) . '</span>';
             echo '</li>';
         }

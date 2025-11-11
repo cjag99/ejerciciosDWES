@@ -26,7 +26,7 @@
         <div class="mb-3">
           <label for="texto" class="form-label">Introduzca un texto:</label>
           <input
-            class="form-control rounded-3 bg-secondary bg-opacity-25 border border-black"
+            class="form-control rounded-3 bg-secondary bg-opacity-25 border "
             type="text"
             name="texto"
             id="texto"
@@ -50,20 +50,22 @@
       integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
       crossorigin="anonymous"
     ></script>
-    <?php
-    function desordenarPalabras(){
-        if(isset($_GET['texto'])){
-            $texto = $_GET['texto'];
-            $palabras = explode(" ",$texto);
-            $palabrasRevertidas = array_reverse($palabras);
-            echo "<div class='text-center me-5'><br><p>El texto al revés es: ";
-            for($i = 0; $i < count($palabrasRevertidas); $i++){
-                echo "$palabrasRevertidas[$i] ";
-            }
-            echo "</p></div>";
-        }
+  <?php
+  // Devuelve el texto con las palabras en orden inverso
+  function desordenarPalabras(){
+    if(isset($_GET['texto'])){
+      $texto = $_GET['texto'];
+      // Separar por espacios y revertir el array de palabras
+      $palabras = explode(" ",$texto);
+      $palabrasRevertidas = array_reverse($palabras);
+      echo "<div class='text-center me-5'><br><p>El texto al revés es: ";
+      for($i = 0; $i < count($palabrasRevertidas); $i++){
+        echo "$palabrasRevertidas[$i] ";
+      }
+      echo "</p></div>";
     }
-    desordenarPalabras();
-    ?>
+  }
+  desordenarPalabras();
+  ?>
 </body>
 </html>

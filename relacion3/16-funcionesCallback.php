@@ -16,8 +16,13 @@
     <div class="container py-5">
         <h1 class="text-center mb-5 text-primary">16 - Funciones callback</h1>
         <?php
+        // Ejemplo sobre callbacks y funciones de orden superior en arrays:
+        // - array_filter con una función de prueba (esPrimo)
+        // - array_map para transformar (cuadrado)
+        // - array_walk para modificar in-place
         $array = range(1, 100);
 
+        // Comprueba que todos los elementos son positivos
         function todosPos($array)
         {
             $esPos = true;
@@ -30,6 +35,7 @@
             return $esPos;
         }
 
+        // Comprueba si existe al menos un múltiplo de 5
         function existeMultiplo5($array)
         {
             $existe = false;
@@ -42,6 +48,7 @@
             return $existe;
         }
 
+        // Determina si un número es primo (versión simple)
         function esPrimo($num)
         {
             $esPrimo = false;
@@ -52,6 +59,7 @@
                     $esPrimo = true;
                     break;
                 default:
+                    // Nota: esta implementación es didáctica; puede optimizarse comprobando hasta sqrt(num)
                     for ($i = 2; $i < $num; $i++) {
                         if ($num % $i == 0) {
                             $esPrimo = false;
@@ -64,6 +72,7 @@
             return $esPrimo;
         }
 
+        // Busca la primera ocurrencia de un número cuyas dos primeras cifras coinciden
         function cifrasIguales($array)
         {
             $resultado = null;
@@ -84,6 +93,7 @@
             return $num ** 2;
         }
 
+        // Uso de callbacks junto con funciones de array
         $esPos = todosPos($array);
         $existe = existeMultiplo5($array);
         $numPrimos = array_filter($array, "esPrimo");

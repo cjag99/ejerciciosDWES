@@ -16,6 +16,7 @@
     <div class="container py-5">
         <h1 class="text-center mb-5 text-primary">17- Funciones Array</h1>
         <?php
+            // Ejemplos prácticos de funciones de arrays: filter, merge, uniq, count_values, diff, flip, etc.
             function numImpares($num)
             {
                 if ($num % 2 != 0) {
@@ -38,15 +39,21 @@
             $array = range(1, 20);
             $arrayImpares = array_filter($array, "numImpares");
             $multiplos3 = array_filter($array, "multiplos3");
+            // Combinamos ambos arrays y ordenamos
             $combine = array_merge($arrayImpares, $multiplos3);
             sort($combine);
+            // Contar repeticiones de cada valor
             $repeticiones = array_count_values($combine);
+            // Diferencia entre arrays
             $diferencia = array_diff($arrayImpares, $multiplos3);
+            // Intercambiar claves y valores
             $invertidos = array_flip($combine);
+            // Elementos comunes
             $repetidos = array_intersect($arrayImpares, $multiplos3);
             $invertido = $combine;
             $reverse = $combine;
             $mezclado = $combine;
+            // Eliminar duplicados
             $noRepetidos = array_unique($combine);
             $numAleatorio = rand(1, 20);
             $arrayRev = array_reverse($combine);

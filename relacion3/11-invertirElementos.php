@@ -17,12 +17,14 @@
     <div class="container py-5">
         <h1 class="text-center mb-5 text-primary">11 - Invirtiendo valores</h1>
 
-        <?php
-        include "./functionsRel3.php";
+    <?php
+    // Ejemplo de intercambio de variables y de inversión de arrays.
+    // Funciones reutilizables swap() e invertirArray() están en `functionsRel3.php`.
+    include "./functionsRel3.php";
 
-        $var1 = "Hola";
-        $var2 = "Adios";
-        $array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    $var1 = "Hola";
+    $var2 = "Adios";
+    $array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
         echo '<div class="card mb-4 shadow-sm">';
         echo '<div class="card-body">';
@@ -35,8 +37,9 @@
         echo '</div>';
         echo '</div>';
 
-        swap($var1, $var2);
-        invertirArray($array);
+    // Llamadas a funciones que modifican por referencia
+    swap($var1, $var2); // intercambia dos variables por referencia
+    invertirArray($array); // invierte el array in-place
 
         echo '<div class="card shadow-sm">';
         echo '<div class="card-body">';

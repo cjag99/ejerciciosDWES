@@ -22,6 +22,9 @@
         <?php
         $datos = ['Pérez', 'García', 'López', 'Márquez', 'Álvarez', 'Domínguez', 'Ruíz', 'Díaz'];
 
+        // Implementación didáctica de Bubble Sort que compara cadenas
+        // - Usa strcoll() con locale en español para ordenar correctamente acentos y caracteres especiales
+        // - Complejidad O(n^2): adecuada para colecciones pequeñas, no para producción con datos grandes
         function bubbleSort(&$array)
         {
             setlocale(LC_COLLATE, 'es_ES.UTF-8', 'es_ES.utf8', 'es_ES', 'Spanish_Spain.1252');

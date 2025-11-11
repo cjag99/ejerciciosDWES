@@ -14,6 +14,7 @@
     $a = 2;
     $b = 0;
     $c = 0;
+    // Manejo de casos degenerados: a == 0 -> ecuación de primer grado; b == 0 o c == 0 tratados por separado
     echo "<p>Para la ecuación: ax² + bx + c = 0<br>Tenemos los siguiente valores:</p>";
     echo "<ul><li>a = $a</li><li>b = $b</li><li>c = $c</li></ul>";
     if ($a == 0) {

@@ -26,7 +26,7 @@
         <div class="mb-3">
           <label for="texto" class="form-label">Introduzca un texto:</label>
           <input
-            class="form-control rounded-3 bg-secondary bg-opacity-25 border border-black"
+            class="form-control rounded-3 bg-secondary bg-opacity-25 border "
             type="text"
             name="texto"
             id="texto"
@@ -50,24 +50,26 @@
       integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
       crossorigin="anonymous"
     ></script>
-    <?php
-    function palabraMasLarga(){
-        if(isset($_GET['texto'])){
-            $texto = $_GET['texto'];
-            $palabras = explode(" ", $texto);
-            $pos = 0;
-            $length =0;
-            for($i = 0; $i < count($palabras); $i++){
-                if($length < strlen($palabras[$i])){
-                    $length = strlen($palabras[$i]);
-                    $pos = $i;
-                }
-            }
-            echo "<div class='text-center me-5'><br>";
-            echo "<p class='mt-2'>La palabra más larga es $palabras[$pos]</p></div>";
+  <?php
+  // Devuelve la palabra más larga en el texto introducido (separa por espacios)
+  function palabraMasLarga(){
+    if(isset($_GET['texto'])){
+      $texto = $_GET['texto'];
+      // Separar por espacios simples; para casos reales considerar trim/regex para múltiples espacios
+      $palabras = explode(" ", $texto);
+      $pos = 0;
+      $length =0;
+      for($i = 0; $i < count($palabras); $i++){
+        if($length < strlen($palabras[$i])){
+          $length = strlen($palabras[$i]);
+          $pos = $i;
         }
+      }
+      echo "<div class='text-center me-5'><br>";
+      echo "<p class='mt-2'>La palabra más larga es $palabras[$pos]</p></div>";
     }
-    palabraMasLarga();
-    ?>
+  }
+  palabraMasLarga();
+  ?>
 </body>
 </html>

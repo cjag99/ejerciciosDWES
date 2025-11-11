@@ -9,6 +9,11 @@
 </head>
 
 <body>
+    <!--
+        Determina el tipo de triángulo según sus tres lados
+        - Considera equilátero, isósceles o escaleno.
+        - Nota: no se comprueba la desigualdad triangular; en uso real validar que los lados forman un triángulo.
+    -->
     <h1>Determina el tipo del triángulo según sus lados</h1>
     <?php
     $lado1 = 2;

@@ -19,6 +19,8 @@
         <h1 class="text-center text-primary mb-5">Arrays asociativos en PHP</h1>
 
         <?php
+        // Array asociativo que contiene la temperatura (ºC) por día.
+        // Se muestra como lista y como tabla para practicar bucles y presentación con Bootstrap.
         const TEMPSEMANA = [
             "Lunes" => 20,
             "Martes" => 22,
@@ -35,6 +37,7 @@
 
         echo "<p>La temperatura del <strong>lunes</strong> es <span class='text-primary fw-bold'>" . TEMPSEMANA["Lunes"] . " ºC</span>.</p>";
 
+        // Lista con badges que muestran la temperatura por día.
         echo '<h5 class="text-muted">Resumen de temperaturas:</h5>';
         echo '<ul class="list-group mb-4">';
         foreach (TEMPSEMANA as $dia => $temp) {
@@ -44,7 +47,7 @@
         }
         echo '</ul>';
 
-        // Mostrar tabla con estilo Bootstrap
+    // Mostrar tabla con estilo Bootstrap: convertimos el array asociativo en filas.
         echo '<h5 class="text-muted">Tabla de temperaturas:</h5>';
         echo '<div class="table-responsive">';
         echo '<table class="table table-bordered table-hover align-middle text-center">';

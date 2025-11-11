@@ -13,6 +13,8 @@
     <?php
     $numero = 5;
     $suma = 0;
+    // Suma de los primeros n números naturales mediante bucle.
+    // Alternativa: fórmula matemática n*(n+1)/2 (más eficiente para n grande).
     for ($i = 1; $i <= $numero; $i++) {
         $suma += $i;
     }

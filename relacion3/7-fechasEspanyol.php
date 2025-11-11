@@ -27,7 +27,7 @@
             <div class="mb-3">
                 <label for="fecha" class="form-label">Introduzca una fecha</label>
                 <input
-                    class="form-control rounded-3 bg-secondary bg-opacity-25 border border-black"
+                    class="form-control rounded-3 bg-secondary bg-opacity-25 border "
                     type="date"
                     name="fecha"
                     id="fecha" />
@@ -42,6 +42,7 @@
             </div>
         </form>
         <?php
+        // Muestra el día de la semana y el mes en español a partir de una fecha 'YYYY-MM-DD'
         function mostrarDiaSemana()
         {
             if (isset($_GET['fecha'])) {
@@ -49,6 +50,7 @@
                 $fecha = new DateTime($fechaStr);
                 $numDia = date_format($fecha, "N");
                 $dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+                // date_format(...,"N") devuelve 1..7 para lun..dom, por eso restamos 1 para indexar el array
                 echo "<br><div class='text-center me-5'><p>Hoy es: <b>" . $dias[$numDia - 1] . "</b></p></div>";
             }
         }
@@ -59,6 +61,7 @@
                 $fecha = new DateTime($fechaStr);
                 $numMes = date_format($fecha, "m");
                 $meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+                // date_format(...,"m") devuelve '01'..'12'; al convertirlo a índice restamos 1
                 echo "<br><div class='text-center me-5'><p>Estamos en el mes: <b>" . $meses[$numMes - 1] . "</b></p></div>";
             }
         }

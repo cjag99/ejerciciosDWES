@@ -9,6 +9,11 @@
 </head>
 
 <body>
+    <!--
+        Resolución de ecuaciones de segundo grado (ax^2 + bx + c = 0)
+        - Se calcula el discriminante y se determinan raíces reales (2, 1 o ninguna).
+        - No se manejan raíces complejas en este ejemplo; añadir tratamiento si se necesita resultado complejo.
+    -->
     <h1>Resolución de ecuación de 2º grado</h1>
     <?php
     $a = 1;
@@ -16,6 +21,7 @@
     $c = 2;
     echo "<p>Para la ecuación: ax² + bx + c = 0<br>Tenemos los siguiente valores:</p>";
     echo "<ul><li>a = $a</li><li>b = $b</li><li>c = $c</li></ul>";
+    // discriminante = b^2 - 4ac
     $discriminante = ($b ** 2) - (4 * $a * $c);
     if ($discriminante > 0) {
         $x1 = (-$b + sqrt($discriminante)) / (2 * $a);

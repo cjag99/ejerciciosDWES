@@ -9,7 +9,12 @@
 </head>
 
 <body>
-        <h1>Aprobado o suspenso con switch</h1>
+                <h1>Aprobado o suspenso con switch</h1>
+                <!--
+                        Uso de switch para agrupar rangos de notas
+                        - Los case se usan en cascada para agrupar múltiples valores que comparten el mismo resultado.
+                        - Si se necesita evaluar rangos más complejos, considerar if/elseif o normalizar la nota a una categoría.
+                -->
         <?php
         $nota = 6;
         echo "La nota es: $nota <br>";

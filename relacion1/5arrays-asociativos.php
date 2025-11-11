@@ -16,6 +16,11 @@
 </head>
 
 <body>
+    <!--
+        Arrays asociativos en PHP
+        - Muestra cómo usar keys legibles (por ejemplo, nombres de días) en lugar de índices numéricos.
+        - Se presentan varias formas de volcar los datos: eco directo, listas y tablas HTML.
+    -->
     <h1>Arrays asociativos en php</h1>
     <?php
     const TEMPSEMANA = [
@@ -31,7 +36,7 @@
     foreach (TEMPSEMANA as $dia => $temp) {
         echo "El día $dia la temperatura fue de $temp ºC<br>";
     }
-    //Mostrar en una lista html
+    // Mostrar en una lista HTML: foreach es ideal para arrays asociativos
     echo "<ul>";
     foreach (TEMPSEMANA as $dia => $temp) {
         echo "<li>El día $dia la temperatura fue de $temp ºC</li>";

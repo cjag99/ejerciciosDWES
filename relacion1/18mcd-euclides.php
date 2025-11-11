@@ -9,6 +9,11 @@
 </head>
 
 <body>
+    <!--
+        Cálculo del Máximo Común Divisor (MCD)
+        - Implementado por el método de sustracción (versión didáctica del algoritmo de Euclides).
+        - Nota: la versión más eficiente usa el operador módulo (%).
+    -->
     <h1>Algoritmo de Euclides: Máximo común divisor</h1>
     <?php
     $a = 48;

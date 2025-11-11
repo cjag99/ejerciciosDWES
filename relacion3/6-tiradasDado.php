@@ -19,13 +19,16 @@
             <h1 class="mb-4 text-center text-primary fw-bold">5- Tiradas de un dado(Clase Math)</h1>
             <div class="mb-3">
                 <label for="num" class="form-label">Introduzca un nº entero: </label> <br>
-                <input type="number" name="num" id="num" class="form-control rounded-3 bg-secondary bg-opacity-25 border border-black"> <br>
+                <input type="number" name="num" id="num" class="form-control rounded-3 bg-secondary bg-opacity-25 border "> <br>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                 <button class="btn btn-success me-md-2" type="submit">Enviar</button>
             </div>
         </form>
         <?php
+        // Calcula frecuencias de tiradas de dados (equiprobable y trucado)
+        // - `dadoNormal` cuenta resultados de 1..6 para un dado justo
+        // - `dadoTrucado` permite valores 1..8 pero se mapea al rango 1..6 para simular sesgo
         if (isset($_GET['num'])) {
             $tiradas = intval($_GET['num']);
             echo "<br><h3 class='text-primary'>Tiramos el dado $tiradas veces:</h3>";

@@ -9,6 +9,11 @@
 </head>
 
 <body>
+    <!--
+        Conversión de decimal a bases: binario/octal/hexadecimal
+        - El ejemplo utiliza base=16 (hex). Para binario usar base=2, para octal base=8.
+        - Para dígitos >= 10 se usa chr(55 + digito) para convertir 10->'A', 11->'B', etc.
+    -->
     <h1>Conversión de decimal por bits: binario, octal, hexadecimal</h1>
     <?php
     $decimal = 175;

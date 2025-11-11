@@ -9,13 +9,18 @@
 </head>
 
 <body>
+    <!--
+        Clases y objetos en PHP
+        - Ejemplo simple de una clase 'Fruta' con propiedades privadas y métodos getters/setters.
+        - Observación: usar la visibilidad adecuada (public/private/protected) y métodos para encapsular datos.
+    -->
     <h1>Objetos y métodos en php</h1>
     <?php
     class Fruta
     {
-        //Atributos o propiedades
-        private $name;      //Recordar visibilidad de atributos (public, private, protected)
-        private $colour;
+    // Atributos o propiedades (encapsulados)
+    private $name;      // Recordar visibilidad de atributos (public, private, protected)
+    private $colour;
         //Métodos o funciones
         public function __construct($name, $colour)     //Idem para funciones
         {
@@ -42,6 +47,7 @@
 
     $apple = new Fruta("Manzana", "Roja");
     $banana = new Fruta("Plátano", "Amarillo");
+    // Uso de la API del objeto mediante getters
     echo "La fruta " . $apple->get_name() . " es de color " . $apple->get_colour() . "<br>";
     echo "La fruta " . $banana->get_name() . " es de color " . $banana->get_colour();
     ?>

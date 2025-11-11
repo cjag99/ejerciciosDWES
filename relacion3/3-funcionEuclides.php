@@ -19,17 +19,18 @@
             <h1 class="mb-4 text-center text-primary fw-bold">1- Función para cálculo de Euclides</h1>
             <div class="mb-3">
                 <label for="num1" class="form-label">Introduzca num1: </label> <br>
-                <input type="number" name="num1" id="num" class="form-control rounded-3 bg-secondary bg-opacity-25 border border-black"> <br>
+                <input type="number" name="num1" id="num" class="form-control rounded-3 bg-secondary bg-opacity-25 border "> <br>
             </div>
             <div class="mb-3">
                 <label for="num2" class="form-label">Introduzca num2: </label> <br>
-                <input type="number" name="num2" id="num" class="form-control rounded-3 bg-secondary bg-opacity-25 border border-black"> <br>
+                <input type="number" name="num2" id="num" class="form-control rounded-3 bg-secondary bg-opacity-25 border "> <br>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                 <button class="btn btn-success me-md-2" type="submit">Enviar</button>
             </div>
         </form>
-        <?php include './functionsRel3.php';
+    <?php include './functionsRel3.php';
+    // Incluimos funciones reutilizables: divisionEuclides() y mcdEuclides()
         /*function divisionEuclides($dividendo, $divisor)
         {
             if ($dividendo < 0 || $divisor < 0) {
@@ -62,10 +63,11 @@
             }
         }*/
         if ((isset($_GET['num1']) and (isset($_GET['num2'])))) {
+            // Normalizar entrada y usar las funciones definidas en functionsRel3.php
             $numero1 = intval($_GET['num1']);
             $numero2 = intval($_GET['num2']);
-            $division = divisionEuclides($numero1, $numero2);
-            $mcd = mcdEuclides($numero1, $numero2);
+            $division = divisionEuclides($numero1, $numero2); // devuelve cociente y resto
+            $mcd = mcdEuclides($numero1, $numero2); // devuelve el máximo común divisor
             echo "<div class='mt-4 text-center'>";
             echo "<ul>";
             foreach ($division as $clave => $valor) {

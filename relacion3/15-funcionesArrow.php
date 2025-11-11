@@ -19,15 +19,17 @@
             <h1 class="mb-4 text-center text-primary fw-bold">Funciones arrow</h1>
             <div class="mb-3">
                 <label for="num" class="form-label">Introduzca un nº positivo: </label> <br>
-                <input type="number" name="num" id="num" class="form-control rounded-3 bg-secondary bg-opacity-25 border border-black"> <br>
+                <input type="number" name="num" id="num" class="form-control rounded-3 bg-secondary bg-opacity-25 border "> <br>
             </div>
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                 <button class="btn btn-success me-md-2" type="submit">Enviar</button>
             </div>
         </form>
         <?php
+        // Ejemplo de funciones flecha (arrow functions) disponibles en PHP 7.4+
+        // Sintaxis compacta equivalente a pequeñas funciones anónimas
         if (isset($_GET['num'])) {
-            $n = $_GET['num'];
+            $n = intval($_GET['num']);
             $circunferencia = fn($n) => 2 * M_PI * $n;
 
             $circulo = fn($n) => M_PI * ($n ** 2);

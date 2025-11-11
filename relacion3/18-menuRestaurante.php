@@ -50,10 +50,12 @@
                     $platos = $menu[$categoria];
                     do {
                         $indice = rand(0, count($platos) - 1);
+                    // Validación básica del número de sugerencias
                         $plato = $platos[$indice];
                     } while (isset($ultimaSugerencia[$categoria]) && $ultimaSugerencia[$categoria] == $plato);
                     $ultimaSugerencia[$categoria] = $plato;
                     echo '<div class="border-bottom pb-1">';
+                    // Genera visualmente n menús completos, evitando repetir el mismo plato en una categoría en menús consecutivos
                     echo '<strong>' . $categoria . ':</strong> ' . $plato;
                     echo '</div>';
                 }

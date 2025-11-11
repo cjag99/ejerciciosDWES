@@ -13,6 +13,8 @@
     <?php
     $numero = 5;
     $factorial = 1;
+    // Cálculo iterativo del factorial: n! = n * (n-1) * ... * 2 * 1
+    // Atención: para números grandes el resultado crece rápido y puede exceder el tipo integer
     for ($i = $numero; $i > 1; $i--) {
         $factorial *= $i;
     }

@@ -9,6 +9,11 @@
 </head>
 
 <body>
+    <!--
+        Conversión de número decimal a binario
+        - Construye la representación binaria dividiendo por 2 y acumulando restos.
+        - Caso especial: si el número es 0, se imprime 0.
+    -->
     <h1>Decimal a binario en php</h1>
     <?php
     $decimal = 33;

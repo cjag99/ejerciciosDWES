@@ -9,6 +9,11 @@
 </head>
 
 <body>
+    <!--
+        División por sustracción (algoritmo tipo Euclides)
+        - Implementa la división entera calculando cociente y resto mediante restas sucesivas.
+        - Valida divisor != 0 y que los números sean naturales.
+    -->
     <h1>Algoritmo de Euclides para la división de números naturales</h1>
     <?php
     $dividendo = 20;

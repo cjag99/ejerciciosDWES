@@ -13,6 +13,8 @@
     <?php
     $numero = 13;
     $esPrimo = true;
+    // Comprobación simple de primalidad (algoritmo O(n)).
+    // Para optimizar, basta comprobar hasta sqrt(n) y evitar pares después del 2.
     if ($numero <= 1) {
         echo "El número $numero no puede ser primo.";
     } else {

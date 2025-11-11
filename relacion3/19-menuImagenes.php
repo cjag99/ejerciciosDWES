@@ -28,6 +28,9 @@
             echo '<h2 class="text-secondary mb-4 text-center">Sugerencias del menú</h2>';
             echo '<div class="row row-cols-1  row-cols-lg-2 row-cols-xl-3 g-4">';
             $categorias = array_keys($menu);
+        // Genera menús con imágenes asociadas a cada plato.
+        // Nota: la selección de índice en el ejemplo original manipula probabilidades y debe garantizar índices válidos
+        // (el índice máximo válido es count($platos)-1). Verificar los límites al usar rand().
 
             for ($i = 1; $i <= $n; $i++) {
                 echo '<div class="col">';
@@ -40,8 +43,14 @@
 
                 foreach ($categorias as $categoria) {
                     $platos = $menu[$categoria];
+                    // Selección aleatoria con ponderación intencional:
+                    // - Se usa rand(0, count($platos)) para generar valores en 0..count($platos)
+                    // - Cuando count($platos) == 3, rand(0,3) produce 0,1,2,3. Los casos 2 y 3
+                    //   se mapean ambos al índice 2 en el switch abajo, dando así el último plato
+                    //   (índice 2) aproximadamente el doble de probabilidad de aparecer.
+                    // - Esto es intencional para favorecer el último elemento en el conjunto.
                     $numAleatorio = rand(0, count($platos)); // * numero de 0 a length, para poder alterar las probabilidades
-                    // * Manejamos las probabilidades con bucle switch
+                    // * Manejamos las probabilidades con bucle switch (mapeo intencional de 2 y 3 a índice 2)
                     switch ($numAleatorio) {
                         case 0:
                             $indice = 0;

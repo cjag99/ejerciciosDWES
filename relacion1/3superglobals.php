@@ -9,6 +9,11 @@
 </head>
 
 <body>
+    <!--
+        Ejemplos de superglobals en PHP
+        - Se muestra el arreglo $_SERVER con datos del request/servidor.
+        - Atención: algunos valores (como HTTP_USER_AGENT, REMOTE_ADDR) vienen del cliente y no son fiables para seguridad.
+    -->
     <h1>Superglobals de php</h1>
     <?php
     echo "<ul>";
@@ -24,6 +29,7 @@
     echo "<li>SCRIPT_FILENAME : " . $_SERVER['SCRIPT_FILENAME'] . "</li>";
     echo "</ul>";
     echo "USANDO print_r:<br>";
+    // print_r y var_dump son útiles para inspeccionar el contenido de superglobals durante desarrollo
     print_r($_SERVER);
     echo "USANDO var_dump:<br>";
     var_dump($_SERVER);

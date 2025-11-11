@@ -19,8 +19,10 @@
 
                 <div class="table-responsive">
                     <table class="table table-bordered table-hover align-middle text-center">
-                        <?php
-                        const MOCK_DATA = [
+                <?php
+                    // Datos de ejemplo (mock) para poblar la tabla.
+                    // Cada elemento es un array con los campos: ID, Nombre, Apellido, Email, Género, IP
+                    const MOCK_DATA = [
                             ["1", "Caty", "Tortis", "ctortis0@jiathis.com", "Female", "134.226.111.64"],
                             ["2", "Myrtle", "Peschke", "mpeschke1@who.int", "Female", "127.194.30.27"],
                             ["3", "Annemarie", "Iglesia", "aiglesia2@biglobe.ne.jp", "Female", "22.26.199.26"],
@@ -33,6 +35,7 @@
                             ["10", "Corbin", "Ruler", "cruler9@soup.io", "Male", "101.254.33.100"]
                         ];
 
+                        // Cabecera de la tabla con Bootstrap
                         echo "<thead class='table-primary'>";
                         echo "<tr>";
                         echo "<th scope='col'>ID</th>";
@@ -44,11 +47,14 @@
                         echo "</tr>";
                         echo "</thead>";
 
+                        // Cuerpo de la tabla: recorremos MOCK_DATA y creamos una fila por cada usuario.
+                        // El primer elemento se coloca como 'th' para mejorar accesibilidad.
                         echo "<tbody>";
                         for ($i = 0; $i < count(MOCK_DATA); $i++) {
                             echo "<tr>";
                             for ($j = 0; $j < count(MOCK_DATA[$i]); $j++) {
                                 if ($j == 0) {
+                                    // ID del usuario, se usa como etiqueta de fila
                                     echo "<th scope='row'>" . MOCK_DATA[$i][0] . "</th>";
                                 } else {
                                     echo "<td>" . MOCK_DATA[$i][$j] . "</td>";

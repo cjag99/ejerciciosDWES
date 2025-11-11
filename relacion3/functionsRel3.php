@@ -1,4 +1,7 @@
 <?php
+// Muestra en HTML los números primos desde 1 hasta $num
+// - Implementación sencilla: para cada i se comprueba divisibilidad por 2..i-1
+// - Uso: mostrarPrimos(10) imprimirá primes entre 1 y 10
 function mostrarPrimos($num)
 {
     echo "<div class='mt-4 text-center'>";
@@ -18,6 +21,8 @@ function mostrarPrimos($num)
     }
     echo "</p></div>";
 }
+// Calcula el factorial de forma recursiva
+// - Retorna n! para n >= 1
 function factorial($num)
 {
     if (intval($num) == 1) {
@@ -26,6 +31,8 @@ function factorial($num)
         return $num * factorial($num - 1);
     }
 }
+// División entera mediante restas sucesivas (versión recursiva didáctica)
+// - Retorna un array asociativo con 'cociente' y 'resto'
 function divisionEuclides($dividendo, $divisor)
 {
     if ($dividendo < 0 || $divisor < 0) {
@@ -47,6 +54,8 @@ function divisionEuclides($dividendo, $divisor)
     return $resultado;
 }
 
+// Máximo común divisor por sustracción (algoritmo de Euclides)
+// - Versión recursiva usando restas
 function mcdEuclides($num1, $num2)
 {
     if ($num1 == $num2) {
@@ -57,12 +66,14 @@ function mcdEuclides($num1, $num2)
         return mcdEuclides($num1, $num2 - $num1);
     }
 }
+// Intercambia dos variables por referencia
 function swap(&$var1, &$var2)
 {
     $temp = $var1;
     $var1 = $var2;
     $var2 = $temp;
 }
+// Invierte un array in-place usando swap() por referencia
 function invertirArray(&$array)
 {
     $n = count($array);

@@ -16,7 +16,12 @@
 
 <body>
     <div class="d-flex justify-content-center align-items-center vh-100">
-        <!--En el método GET los datos enviados aparecen en la URL, cosa que no pasa con el método POST-->
+        <!--
+            Formulario calculadora (cliente)
+            - Recoge tres campos: num1, operador, num2.
+            - Actualmente usa method="get" por simplicidad: los valores se envían en la URL.
+            - Recomendación: validar num1/num2 en cliente y servidor antes de operar para evitar errores (división por cero, valores no numéricos, etc.).
+        -->
         <form
             class="border border-0 rounded-4 shadow-lg p-4 p-4 bg-secondary bg-opacity-25"
             method="get"
@@ -28,7 +33,7 @@
             <div class="mb-3">
                 <label for="num1" class="form-label">Introduzca un número:</label>
                 <input
-                    class="form-control rounded-3 bg-secondary bg-opacity-25 border border-black"
+                    class="form-control rounded-3 bg-secondary bg-opacity-25 border "
                     type="number"
                     name="num1"
                     id="num1" />
@@ -37,7 +42,7 @@
             <div class="mb-3">
                 <label for="operador" class="form-label">Indique el tipo de operación:</label>
                 <select
-                    class="form-select rounded-3 bg-secondary bg-opacity-25 border border-black"
+                    class="form-select rounded-3 bg-secondary bg-opacity-25 border "
                     name="operador"
                     id="operador">
                     <option selected>Open this select menu</option>
@@ -52,7 +57,7 @@
             <div class="mb-3">
                 <label for="num2" class="form-label">Introduzca otro número:</label>
                 <input
-                    class="form-control rounded-3 bg-secondary bg-opacity-25 border border-black"
+                    class="form-control rounded-3 bg-secondary bg-opacity-25 border "
                     type="number"
                     name="num2"
                     id="num2" />

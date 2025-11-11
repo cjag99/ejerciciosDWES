@@ -32,7 +32,7 @@
             <div class="mb-3">
                 <label for="texto" class="form-label">Introduzca un texto</label>
                 <input
-                    class="form-control rounded-3 bg-secondary bg-opacity-25 border border-black"
+                    class="form-control rounded-3 bg-secondary bg-opacity-25 border "
                     type="text"
                     name="texto"
                     id="texto" />
@@ -49,7 +49,7 @@
                     <p class="form-label">Indique la opción a ejecutar:</p>
                     <div class="form-check">
                         <input
-                            class="form-check-input bg-secondary bg-opacity-25 border border-black"
+                            class="form-check-input bg-secondary bg-opacity-25 border "
                             type="checkbox"
                             name="check1"
                             id="check1"
@@ -58,7 +58,7 @@
                     </div>
                     <div class="form-check">
                         <input
-                            class="form-check-input bg-secondary bg-opacity-25 border border-black"
+                            class="form-check-input bg-secondary bg-opacity-25 border "
                             type="checkbox"
                             name="check2"
                             id="check2"
@@ -72,10 +72,17 @@
                 </div>
             </div>
     </div>
-    </form>
+        </form>
+        <!--
+                Texto Mayus/Minus
+                - Se ofrecen dos modos: convertir todo el texto a mayúsculas/minúsculas (form1)
+                    o permitir seleccionar con checkboxes la(s) transformación(es) a aplicar (form2).
+                - El campo oculto 'tipo' indica al servidor qué modo se ha usado.
+        -->
     <div class="result-area text-center mt-2 w-100">
 
         <?php
+        // Convierte el texto a minúsculas y lo muestra
         function textoLower()
         {
             if (isset($_GET['texto'])) {
@@ -83,6 +90,7 @@
                 echo "<p class='text-center mt-1 mb-0'>El texto $texto en minúsculas es: <b>" . strtolower($texto) . "</b></p>";
             }
         }
+        // Convierte el texto a mayúsculas y lo muestra
         function textoUpper()
         {
             if (isset($_GET['texto'])) {
