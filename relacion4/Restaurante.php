@@ -18,7 +18,7 @@ class Restaurante
     }
     public function __toString()
     {
-        $listaRatings = empty($this->ratings)
+        $listaRatings = count($this->ratings) == 0
             ? "Sin valoraciones"
             : implode(", ", $this->ratings);
 
