@@ -1,15 +1,17 @@
 <?php
 class Restaurante
 {
-    public  string $nombre;
-    public string $tipoCocina;
-    public  array $ratings;
+    private  string $nombre;
+    private string $tipoCocina;
+    private  array $ratings;
+    private static $numRest = 0;
 
     public function __construct($nombre, $tipoCocina)
     {
         $this->nombre = $nombre;
         $this->tipoCocina = $tipoCocina;
         $this->ratings = [];
+        self::$numRest++;
     }
 
     public function __destruct()
@@ -28,7 +30,26 @@ class Restaurante
                     <li>Ratings: {$listaRatings}</li>
                 </ul>";
     }
-
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
+    public function setTipoCocina($tipoCocina)
+    {
+        $this->tipoCocina = $tipoCocina;
+    }
+    public static function totalRests()
+    {
+        return self::$numRest;
+    }
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+    public function getTipoCocina()
+    {
+        return $this->tipoCocina;
+    }
     public function getNumRatings()
     {
         return count($this->ratings);
@@ -49,7 +70,7 @@ class Restaurante
             if ($rating < 1 || $rating > 5) {
                 throw new ValueError("Ratings must be between 1 y 5");
             }
-            array_push($this->ratings, ...$ratings);
+            array_push($this->ratings, $rating);
         }
     }
 
