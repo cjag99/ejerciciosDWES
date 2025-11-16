@@ -12,21 +12,8 @@ function checkOption(id, idForm) {
     ? showHiddenForm(idForm)
     : hideForm(idForm);
 }
-function unlockOptions(id) {
-  let restaurants = JSON.parse(sessionStorage.getItem("restaurants")) || [];
-  let name = document.getElementById(id).value.trim();
-  restaurants.push(name);
-  sessionStorage.setItem("restaurants", JSON.stringify(restaurants));
-  document.getElementById("options").hidden = false;
-}
-function lockOptions(id) {
-  let name = document.getElementById(id).value.trim();
-  let restaurants = JSON.parse(sessionStorage.getItem("restaurants")) || [];
-  restaurants = restaurants.filter((r) => r !== name);
-  sessionStorage.setItem("restaurants", JSON.stringify(restaurants));
-  document.getElementById("options").hidden = true;
-}
-window.onload = () => {
-  let restaurants = JSON.parse(sessionStorage.getItem("restaurants")) || [];
-  document.getElementById("options").hidden = restaurants.length === 0;
-};
+//Manejando el modal de cierre de sesión
+const myModal = new bootstrap.Modal(
+  document.getElementById("modalId"),
+  options
+);

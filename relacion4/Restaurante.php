@@ -16,7 +16,7 @@ class Restaurante
 
     public function __destruct()
     {
-        print("Destruyendo " . $this->nombre . "...");
+       self::$numRest--;
     }
     public function __toString()
     {
@@ -50,9 +50,9 @@ class Restaurante
     {
         return $this->tipoCocina;
     }
-    public function getNumRatings()
+    public function getRatings()
     {
-        return count($this->ratings);
+        return $this->ratings;
     }
 
     public function addRating($rating)

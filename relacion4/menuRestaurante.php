@@ -1,8 +1,13 @@
 <?php
+ob_start();
+include "./Restaurante.php";
+include "./gestorRestaurante.php";
 session_start();
 if (!isset($_SESSION['restaurantes'])) {
     $_SESSION['restaurantes'] = [];
 }
+opcionesMenu();
+$outputMessages = ob_get_clean();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +31,7 @@ if (!isset($_SESSION['restaurantes'])) {
             <h3>Eliga que opción desea ejecutar:</h3>
             <div class="form-check">
 
-                <input class="form-check-input" type="checkbox" id="addRestaurant" name="addRestaurant" value="addRestaurant" onchange="checkOption('addRestaurant', 'restaurantForm')">
+                <input class="form-check-input" type="checkbox" id="addRestaurant"  value="addRestaurant" onchange="checkOption('addRestaurant', 'restaurantForm')">
                 <label class="form-check-label" for="addRestaurant">Añadir nuevo restaurante</label><br>
             </div>
             <div class="container" id="restaurantForm" hidden>
@@ -57,22 +62,23 @@ if (!isset($_SESSION['restaurantes'])) {
                     </div>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <button class="btn btn-success me-md-2" type="submit" onclick="unlockOptions('nombre')">
+                        <button class="btn btn-success me-md-2" name="addRestaurant" type="submit" >
                             Crear restaurante
                         </button>
                         <button class="btn btn-outline-secondary" type="reset">Borrar</button>
                     </div>
                 </form>
             </div>
-            <div id="options" hidden>
+            <div id="options" <?php if (empty($_SESSION['restaurantes'])) { echo 'hidden'; } ?>>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="toString" name="toString" value="toString" onclick="checkOption('toString','showRestaurante')">
+                    <input class="form-check-input" type="checkbox" id="toString"  value="toString" onclick="checkOption('toString','showRestaurante')">
                     <label class="form-check-label" for="toString"> Mostrar restaurante</label><br>
                 </div>
                 <div id="showRestaurante" hidden>
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="get">
                         <button
                             type="submit"
+                            name="toString"
                             class="btn btn-primary">
                             Mostrar Restaurantes
                         </button>
@@ -80,13 +86,14 @@ if (!isset($_SESSION['restaurantes'])) {
                     </form>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="getRatings" name="getRatings" value="getRatings" onclick="checkOption('getRatings','showRatings')">
+                    <input class="form-check-input" type="checkbox" id="getRatings"  value="getRatings" onclick="checkOption('getRatings','showRatings')">
                     <label class="form-check-label" for="getRatings">Obtener nº de valoraciones</label><br>
                 </div>
                 <div id="showRatings" hidden>
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="get">
                         <button
                             type="submit"
+                            name="getRatings"
                             class="btn btn-primary">
                             Mostrar Ratings
                         </button>
@@ -94,12 +101,14 @@ if (!isset($_SESSION['restaurantes'])) {
                     </form>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="addRating" name="addRating" value="addRating" onclick="checkOption('addRating','addRatingForm')">
+                    <input class="form-check-input" type="checkbox" id="addRating"  value="addRating" onclick="checkOption('addRating','addRatingForm')">
                     <label class="form-check-label" for="addRating">Añadir valoración</label><br>
                 </div>
                 <div id="addRatingForm" hidden>
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="get">
                         <div class="mb-3">
+                            <label for="buscaNombre">Introduzca el nombre del restaurante a valorar:</label> <br>
+                            <input type="text" name="buscaNombre" id="buscaNombre" required> <br>
                             <label for="" class="form-label">Introduzca su valoración</label> <br>
                             <input
                                 type="number"
@@ -113,6 +122,7 @@ if (!isset($_SESSION['restaurantes'])) {
 
                         <button
                             type="submit"
+                            name="addRating"
                             class="btn btn-primary">
                             Añadir valoración
                         </button>
@@ -120,18 +130,20 @@ if (!isset($_SESSION['restaurantes'])) {
                     </form>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="addRatings" name="addRatings" value="addRatings" onclick="checkOption('addRatings','addRatingsForm')">
+                    <input class="form-check-input" type="checkbox" id="addRatings"  value="addRatings" onclick="checkOption('addRatings','addRatingsForm')">
                     <label class="form-check-label" for="addRatings">Añadir valoraciones</label><br>
                 </div>
                 <div id="addRatingsForm" hidden>
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="get">
                         <div class="mb-3">
+                            <label for="buscaNombre2">Introduzca el nombre del restaurante a valorar:</label> <br>
+                            <input type="text" name="buscaNombre2" id="buscaNombre2" required> <br>
                             <label for="" class="form-label">Introduzca sus valoraciones</label> <br>
                             <input
                                 type="text"
                                 class="form-control"
-                                name="valoracion"
-                                id="valoracion"
+                                name="valoraciones"
+                                id="valoraciones"
                                 aria-describedby="helpId"
                                 placeholder="" />
                             <small id="helpId" class="form-text text-muted">Nºs entre 1 y 5, separados por comas</small>
@@ -139,6 +151,7 @@ if (!isset($_SESSION['restaurantes'])) {
 
                         <button
                             type="submit"
+                            name="addRatings"
                             class="btn btn-primary">
                             Añadir valoración
                         </button>
@@ -146,7 +159,7 @@ if (!isset($_SESSION['restaurantes'])) {
                     </form>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="averageRating" name="averageRating" value="averageRating" onclick="checkOption('averageRating','showAverage')">
+                    <input class="form-check-input" type="checkbox" id="averageRating" value="averageRating" onclick="checkOption('averageRating','showAverage')">
                     <label class="form-check-label" for="averageRating">Obtener media de valoraciones</label><br>
                 </div>
                 <div id="showAverage" hidden>
@@ -154,6 +167,7 @@ if (!isset($_SESSION['restaurantes'])) {
 
                         <button
                             type="submit"
+                             name="averageRating"
                             class="btn btn-primary">
                             Mostrar media de valoraciones
                         </button>
@@ -161,7 +175,7 @@ if (!isset($_SESSION['restaurantes'])) {
 
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="destroyRestaurant" name="destroyRestauran" value="destroyRestaurant" onclick="checkOption('destroyRestaurant', 'eraseRestaurantForm')">
+                    <input class="form-check-input" type="checkbox" id="destroyRestaurant"  value="destroyRestaurant" onclick="checkOption('destroyRestaurant', 'eraseRestaurantForm')">
                     <label class="form-check-label" for="destroyRestaurant">Eliminar restaurante</label><br>
                 </div>
                 <div class="container" id="eraseRestaurantForm" hidden>
@@ -183,20 +197,95 @@ if (!isset($_SESSION['restaurantes'])) {
                                 id="borraNombre" />
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                            <button class="btn btn-success me-md-2" type="submit" onclick="lockOptions('borraNombre')">
+                            <button class="btn btn-success me-md-2" type="submit" name="destroyRestaurant">
                                 Eliminar restaurante
                             </button>
                             <button class="btn btn-outline-secondary" type="reset">Borrar</button>
                         </div>
                     </form>
                 </div>
+                <div class="container">
+                    <form action="sessionClosed.php" method="get">
+                         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            <button
+                                type="button"
+                                class="btn btn-danger btn-lg"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modalId"
+                                >
+                            Cerrar sesion
+                            </button>
+                <!-- Modal Body -->
+                <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                            <div
+                            class="modal fade"
+                            id="modalId"
+                            tabindex="-1"
+                            data-bs-backdrop="static"
+                            data-bs-keyboard="false"
+                            role="dialog"
+                            aria-labelledby="modalTitleId"
+                            aria-hidden="true"
+                            >
+                            <div
+                                class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+                                role="document"
+                            >
+                                <div class="modal-content bg-dark text-white">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalTitleId">Cierre de sesión</h5>
+                                    <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                    ></button>
+                                </div>
+                                <div class="modal-body">
+                                    Se eliminarán todos los restaurantes ¿Desea cerrar sesión?
+                                </div>
+                                <div class="modal-footer">
+                                    <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-bs-dismiss="modal"
+                                    >
+                                    Cancelar
+                                    </button>
+                                    <button
+                                    type="submit"
+                                    name="sessionClosed"
+                                    class="btn btn-outline-danger"
+                                    >
+                                    Cerrar sesión
+                                    </button>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                         </div>
+                    </form>
+                </div>
             </div>
         </div>
-        <?php
-        include "./gestorRestaurante.php";
+    </div>
+    <div>
+        <?php 
+        echo $outputMessages;
         ?>
     </div>
     <script src="./main.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
 </body>
 
 </html>

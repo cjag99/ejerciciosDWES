@@ -1,21 +1,18 @@
 <?php
 function encontrarRestaurante($nombre, $array)
 {
-    $result = null;
+    
     foreach ($array as $element) {
         if ($element->getNombre() === $nombre) {
-            $result = $element;
+           return $element;
         }
     }
-    return $result;
+    return null;
 }
 
-function addRestaurant($array)
+function addRestaurant(&$array, $nombre, $tipoCocina)
 {
-
-    if (isset($_GET['nombre']) && isset($_GET['tipoCocina'])) {
-        array_push($array, new Restaurante($_GET['nombre'], $_GET['tipoCocina']));
-    }
+        array_push($array, new Restaurante($nombre, $tipoCocina));
 }
 function mostrarRestaurantes($array)
 {
@@ -27,10 +24,10 @@ function mostrarRestaurantes($array)
 function getRestauranteRatings($array)
 {
     foreach ($array as $element) {
-        echo "<p>El restaurante ", $element->getNombre(), " tiene las siguientes puntuaciones: ", implode(",", $element->getNumRatings()), "</p>";
+        echo "<p>El restaurante ", $element->getNombre(), " tiene las siguientes puntuaciones: ", implode(",", $element->getRatings()), "</p>";
     }
 }
-function addValoracion($valoracion, $nombre, $array)
+function addValoracion($valoracion, $nombre, &$array)
 {
     $restaurante = encontrarRestaurante($nombre, $array);
     if ($restaurante != null) {
@@ -40,19 +37,24 @@ function addValoracion($valoracion, $nombre, $array)
         } catch (\ValueError $th) {
             echo $th->getMessage();
         }
-    }
+    }else{
+        echo "<p>No se ha encontrado el restaurante $nombre</p>";
+    };
 }
-function addValoraciones($nombre, $array, ...$valoraciones)
+function addValoraciones($nombre, &$array)
 {
     $restaurante = encontrarRestaurante($nombre, $array);
     if ($restaurante != null) {
         try {
-            $restaurante->addRatings(...$valoraciones);
+           $valores = array_map('intval', explode(",", $_GET['valoraciones']));
+            $restaurante->addRatings(...$valores);
             echo "<p>Se han añadido correctamente las valoraciones</p>";
         } catch (\ValueError $th) {
             echo $th->getMessage();
         }
-    }
+    } else{
+        echo "<p>No se ha encontrado el restaurante $nombre</p>";
+    };
 }
 
 function mediaValoraciones($array)
@@ -62,12 +64,41 @@ function mediaValoraciones($array)
     }
 }
 
-function delRestaurante($nombre, $array)
+function delRestaurante($nombre, &$array)
 {
-    $restaurante = encontrarRestaurante($nombre, $array);
-    if ($restaurante != null) {
-        unset($restaurante);
-    } else {
-        echo "<p>No se puede eliminar un restaurante que no existe</p>";
+    foreach($array as $key=>$restaurante){
+        if($array[$key]->getNombre() === $nombre){
+            unset($array[$key]);
+            echo "<p>Se ha eliminado el restaurante $nombre</p>";
+            return;
+        }
     }
+    echo "<p>No se puede eliminar ese restaurante. No existe</p>";
+    
+}
+
+function closeSession()
+{
+    // 2. Destruye TODAS las variables de la sesión (liberando los objetos).
+    $_SESSION = array(); 
+
+    // 3. Destruye el archivo de sesión en el servidor.
+    session_destroy();
+}
+function opcionesMenu(){
+    if(isset($_GET['addRestaurant'])){
+        addRestaurant($_SESSION['restaurantes'], $_GET['nombre'], $_GET['tipoCocina']);
+    } elseif(isset($_GET['toString'])){
+        mostrarRestaurantes($_SESSION['restaurantes']);
+    } elseif(isset($_GET['getRatings'])){
+        getRestauranteRatings($_SESSION['restaurantes']);
+    } elseif(isset($_GET['addRating'])){
+        addValoracion($_GET['valoracion'], $_GET['buscaNombre'], $_SESSION['restaurantes']);
+    } elseif(isset($_GET['addRatings'])){
+         addValoraciones($_GET['buscaNombre2'], $_SESSION['restaurantes']);
+    } elseif(isset($_GET['averageRating'])){
+        mediaValoraciones($_SESSION['restaurantes']);
+    } elseif(isset($_GET['destroyRestaurant'])){
+        delRestaurante($_GET['borraNombre'], $_SESSION['restaurantes']);
+    };
 }
