@@ -26,9 +26,10 @@ export class ValidatorStyle {
    * @memberof ValidatorStyle
    */
   static setError(id) {
-    let input = document.getElementById(id);
-    document.getElementById(id + "Help").style.visibility = "visible";
-    input.classList.add("border-danger");
+    const input = document.getElementById(id);
+    const help = document.getElementById(id + "Help");
+    if (help) help.style.visibility = "visible";
+    if (input) input.classList.add("border-danger");
   }
   /**
    * Clears error styling and hides the help message for an input element.
@@ -38,8 +39,9 @@ export class ValidatorStyle {
    * @memberof ValidatorStyle
    */
   static clearError(id) {
-    let input = document.getElementById(id);
-    document.getElementById(id + "Help").style.visibility = "hidden";
-    input.classList.remove("border-danger");
+    const input = document.getElementById(id);
+    const help = document.getElementById(id + "Help");
+    if (help) help.style.visibility = "hidden";
+    if (input) input.classList.remove("border-danger");
   }
 }

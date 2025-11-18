@@ -11,12 +11,12 @@ class Restaurante
         $this->nombre = $nombre;
         $this->tipoCocina = $tipoCocina;
         $this->ratings = [];
-        self::$numRest++;
+        Self::$numRest++;
     }
 
     public function __destruct()
     {
-       self::$numRest--;
+        Self::$numRest--;
     }
     public function __toString()
     {
@@ -40,7 +40,7 @@ class Restaurante
     }
     public static function totalRests()
     {
-        return self::$numRest;
+        return Self::$numRest;
     }
     public function getNombre()
     {

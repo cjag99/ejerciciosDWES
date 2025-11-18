@@ -24,14 +24,14 @@ export class Validator {
    * @type {RegExp}
    */
   static DNI = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/i;
-/**
- * Validates if the input value is a number.
- * @static
- * @param {string} id - The id of the input element to validate.
- * @returns {boolean} True if the value is a number, false otherwise.
- * @memberof Validator
- */
-static validateNumber(id) {
+  /**
+   * Validates if the input value is a number.
+   * @static
+   * @param {string} id - The id of the input element to validate.
+   * @returns {boolean} True if the value is a number, false otherwise.
+   * @memberof Validator
+   */
+  static validateNumber(id) {
     const input = document.getElementById(id);
     if (!input) {
       console.error(`Input con id '${id}' no encontrado`);
@@ -40,60 +40,60 @@ static validateNumber(id) {
     const number = Number(input.value);
     return !isNaN(number);
   }
-/**
- * Validates if the input value is an integer.
- * @static
- * @param {string} id - The id of the input element to validate.
- * @returns {boolean} True if the value is an integer, false otherwise.
- * @memberof Validator
- */
-static validateInteger(id) {
+  /**
+   * Validates if the input value is an integer.
+   * @static
+   * @param {string} id - The id of the input element to validate.
+   * @returns {boolean} True if the value is an integer, false otherwise.
+   * @memberof Validator
+   */
+  static validateInteger(id) {
     if (!this.validateNumber(id)) return false;
     const number = Number(document.getElementById(id).value);
     return Number.isInteger(number);
   }
-/**
- * Validates if the input value is a decimal (not an integer).
- * @static
- * @param {string} id - The id of the input element to validate.
- * @returns {boolean} True if the value is a decimal, false otherwise.
- * @memberof Validator
- */
-static validateDecimal(id) {
+  /**
+   * Validates if the input value is a decimal (not an integer).
+   * @static
+   * @param {string} id - The id of the input element to validate.
+   * @returns {boolean} True if the value is a decimal, false otherwise.
+   * @memberof Validator
+   */
+  static validateDecimal(id) {
     if (!this.validateNumber(id)) return false;
     const number = Number(document.getElementById(id).value);
     return !Number.isInteger(number);
   }
-/**
- * Validates if the input value is a positive number (>= 0).
- * @static
- * @param {string} id - The id of the input element to validate.
- * @returns {boolean} True if the value is positive, false otherwise.
- * @memberof Validator
- */
-static validatePositive(id) {
+  /**
+   * Validates if the input value is a positive number (>= 0).
+   * @static
+   * @param {string} id - The id of the input element to validate.
+   * @returns {boolean} True if the value is positive, false otherwise.
+   * @memberof Validator
+   */
+  static validatePositive(id) {
     if (!this.validateNumber(id)) return false;
     const number = Number(document.getElementById(id).value);
     return number >= 0;
   }
-/**
- * Validates if the input value is a natural number (integer and positive).
- * @static
- * @param {string} id - The id of the input element to validate.
- * @returns {boolean} True if the value is a natural number, false otherwise.
- * @memberof Validator
- */
-static validateNaturalNumber(id) {
+  /**
+   * Validates if the input value is a natural number (integer and positive).
+   * @static
+   * @param {string} id - The id of the input element to validate.
+   * @returns {boolean} True if the value is a natural number, false otherwise.
+   * @memberof Validator
+   */
+  static validateNaturalNumber(id) {
     return this.validateInteger(id) && this.validatePositive(id);
   }
-/**
- * Validates if the input value is non-empty text.
- * @static
- * @param {string} id - The id of the input element to validate.
- * @returns {boolean} True if the value is non-empty, false otherwise.
- * @memberof Validator
- */
-static validateText(id) {
+  /**
+   * Validates if the input value is non-empty text.
+   * @static
+   * @param {string} id - The id of the input element to validate.
+   * @returns {boolean} True if the value is non-empty, false otherwise.
+   * @memberof Validator
+   */
+  static validateText(id) {
     const input = document.getElementById(id);
     if (!input) {
       console.error(`Input con id '${id}' no encontrado`);
@@ -102,38 +102,38 @@ static validateText(id) {
     const text = input.value.trim();
     return text.length > 0;
   }
-/**
- * Validates if the input value is a valid name (letters and spaces only).
- * @static
- * @param {string} id - The id of the input element to validate.
- * @returns {boolean} True if the value matches the name pattern, false otherwise.
- * @memberof Validator
- */
-static validateName(id) {
+  /**
+   * Validates if the input value is a valid name (letters and spaces only).
+   * @static
+   * @param {string} id - The id of the input element to validate.
+   * @returns {boolean} True if the value matches the name pattern, false otherwise.
+   * @memberof Validator
+   */
+  static validateName(id) {
     if (!this.validateText(id)) return false;
     const text = document.getElementById(id).value.trim();
     return this.NAME.test(text);
   }
-/**
- * Validates if the input value is a valid email address.
- * @static
- * @param {string} id - The id of the input element to validate.
- * @returns {boolean} True if the value matches the email pattern, false otherwise.
- * @memberof Validator
- */
-static validateEmail(id) {
+  /**
+   * Validates if the input value is a valid email address.
+   * @static
+   * @param {string} id - The id of the input element to validate.
+   * @returns {boolean} True if the value matches the email pattern, false otherwise.
+   * @memberof Validator
+   */
+  static validateEmail(id) {
     if (!this.validateText(id)) return false;
     const text = document.getElementById(id).value.trim();
     return this.EMAIL.test(text);
   }
-/**
- * Validates if the input value is a valid Spanish DNI (8 digits and a letter).
- * @static
- * @param {string} id - The id of the input element to validate.
- * @returns {boolean} True if the value matches the DNI pattern, false otherwise.
- * @memberof Validator
- */
-static validateDni(id) {
+  /**
+   * Validates if the input value is a valid Spanish DNI (8 digits and a letter).
+   * @static
+   * @param {string} id - The id of the input element to validate.
+   * @returns {boolean} True if the value matches the DNI pattern, false otherwise.
+   * @memberof Validator
+   */
+  static validateDni(id) {
     if (!this.validateText(id)) return false;
     const text = document.getElementById(id).value.trim();
     return this.DNI.test(text);
