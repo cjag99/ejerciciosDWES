@@ -16,15 +16,34 @@
 <body>
     <div class="d-flex flex-column justify-content-center align-items-center vh-100">
 
-        <form id="act15" action=<?php echo $_SERVER['PHP_SELF'] ?> method="get" class="border border-0 rounded-4 shadow-lg p-4 p-4 bg-secondary bg-opacity-25" id="form1">
+        <form id="act15" action=<?php echo $_SERVER['PHP_SELF'] ?> method="get" class="border border-0 rounded-4 shadow-lg p-4 p-4 bg-secondary bg-opacity-25">
             <h1 class="mb-4 text-center text-primary fw-bold">Formulario primo/divisores</h1>
             <div class="mb-3">
                 <label for="num" class="form-label">Introduzca un nº natural: </label> <br>
                 <input type="number" name="num" id="num" class="form-control rounded-3 bg-secondary bg-opacity-25 border"> <br>
                 <span id="numHelp" style="visibility:hidden;">Error</span>
             </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="opcion" value="primos" id="primos" />
+                <label class="form-check-label" for="primos"> Número primo desde 1  </label>
+            </div>
+            <div class="form-check">
+                <input
+                    class="form-check-input"
+                    type="radio"
+                    name="opcion"
+                    value="divisores"
+                    id="divisores"
+                    checked
+                    
+                />
+                <label class="form-check-label" for="divisores">
+                    Divisores del número
+                </label>
+            </div>
+            
             <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                <button class="btn btn-success me-md-2" type="button" id="miBoton" onclick="act15()">Enviar</button>
+                <button class="btn btn-success me-md-2" type="button" id="miBoton" onclick="act16()">Enviar</button>
             </div>
         </form>
     </div>
