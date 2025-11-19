@@ -11,7 +11,7 @@
         rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
         crossorigin="anonymous" />
-    <link rel="stylesheet" href="../Bootstrap Templates/src/styles/formStyle.css" />
+    <link rel="stylesheet" href="../BootstrapTemplates/src/styles/formStyle.css">
 </head>
 
 <body>
