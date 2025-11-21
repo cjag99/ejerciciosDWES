@@ -81,3 +81,33 @@ function invertirArray(&$array)
         swap($array[$i], $array[$n - $i - 1]);
     }
 }
+
+function calcularLetraDNI($numDNI)
+{
+    $letras = ["T", "R", "W", "A", "G", "M", "Y", "F", "P", "D", "X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L", "C", "K", "E"];
+    return $letras[(intval($numDNI) % 23) - 1];
+}
+
+function calcularLetraNIE($nie)
+{
+    $numeroNIE = null;
+    for ($i = 0; $i < count($nie); $i++) {
+        if ($i == 0) {
+            $numeroNIE = match ($nie[0]) {
+                "X" => 0,
+                "Y" => 1,
+                "Z" => 2
+            };
+        } else {
+            $numeroNIE += intval($nie[$i]);
+        }
+    }
+    return calcularLetraDNI($numeroNIE);
+}
+function formatTIE(&$tie)
+{
+    while (count($tie) < 8) {
+        $tie = "0" + $tie;
+    }
+    return $tie;
+}

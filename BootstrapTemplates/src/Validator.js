@@ -5,32 +5,13 @@
  * @class Validator
  */
 export class Validator {
-  /**
-   * Regular expression to validate names (letters and spaces only).
-   * @static
-   * @type {RegExp}
-   */
   static NAME = /^[A-Za-z ]+$/;
-  /**
-   * Regular expression to validate email addresses (RFC 5322 compliant).
-   * @static
-   * @type {RegExp}
-   */
   static EMAIL =
     /^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
-  /**
-   * Regular expression to validate Spanish DNI (8 digits followed by a letter).
-   * @static
-   * @type {RegExp}
-   */
-  static DNI = /^[0-9]{8}[TRWAGMYFPDXBNJZSQVHLCKE]$/i;
-  /**
-   * Validates if the input value is a number.
-   * @static
-   * @param {string} id - The id of the input element to validate.
-   * @returns {boolean} True if the value is a number, false otherwise.
-   * @memberof Validator
-   */
+  static DNI = /^[0-9]{8}$/i;
+  static NIE = /^[XYZ][0-9]{7}[0-9]$/;
+  static TIE = /^\d{1,8}$/;
+
   static validateNumber(id) {
     const input = document.getElementById(id);
     if (!input) {
@@ -137,5 +118,17 @@ export class Validator {
     if (!this.validateText(id)) return false;
     const text = document.getElementById(id).value.trim();
     return this.DNI.test(text);
+  }
+
+  static validateNIE(id) {
+    if (!this.validateText(id)) return false;
+    const text = document.getElementById(id).value.trim();
+    return this.NIE.test(text);
+  }
+
+  static validateTIE(id) {
+    if (!this.validateText(id)) return false;
+    const text = document.getElementById(id).value.trim();
+    return this.TIE.test(text);
   }
 }
