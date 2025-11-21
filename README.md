@@ -1,3 +1,6 @@
+[🇪🇸 Español](./README.md) | [🇬🇧 English](./ENGReadme.md)
+
+
 # Ejercicios DWES
 
 Este repositorio contiene los ejercicios del módulo **Desarrollo en Entorno Servidor (DWES)**, enfocado en adquirir conocimientos fundamentales de **PHP**.  
