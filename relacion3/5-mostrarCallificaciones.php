@@ -20,7 +20,7 @@
 
 <body>
     <?php
-    include "./relacion3/functionsRel3.php";
+    include "./functionsRel3.php";
     $rubrica = [
         "Inicial" => 0.2,
         "Primera" => 0.3,
@@ -39,8 +39,8 @@
     }
     if (isset($_GET['documento'])) {
         $resultado = match ($_GET['documento']) {
-            "dnI" => $_GET['dni'] + calcularLetraDNI(intval($_GET['dni'])),
-            "niE" => $_GET['nie'] + calcularLetraNIE($_GET['nie']) + "-" + formatTIE($_GET['tie'])
+            "dni" => $_GET['dni'] . calcularLetraDNI(intval($_GET['dni'])),
+            "nie" => $_GET['nie'] . calcularLetraNIE($_GET['nie']) . "-" . formatTIE($_GET['tie'])
         };
     }
     if (isset($_GET['nombre']) && $_GET['email']) {

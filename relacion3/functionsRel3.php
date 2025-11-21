@@ -90,24 +90,19 @@ function calcularLetraDNI($numDNI)
 
 function calcularLetraNIE($nie)
 {
-    $numeroNIE = null;
-    for ($i = 0; $i < count($nie); $i++) {
-        if ($i == 0) {
-            $numeroNIE = match ($nie[0]) {
-                "X" => 0,
-                "Y" => 1,
-                "Z" => 2
-            };
-        } else {
-            $numeroNIE += intval($nie[$i]);
-        }
-    }
-    return calcularLetraDNI($numeroNIE);
+    $numeroNIE = match ($nie[0]) {
+        "X" => "0",
+        "Y" => "1",
+        "Z" => "2",
+        default => "0",
+    };
+
+    // Concatenar los dígitos restantes
+    $numeroNIE .= substr($nie, 1);
+
+    return calcularLetraDNI(intval($numeroNIE));
 }
 function formatTIE(&$tie)
 {
-    while (count($tie) < 8) {
-        $tie = "0" + $tie;
-    }
-    return $tie;
+    return str_pad($tie, 8, "0", STR_PAD_LEFT);
 }
