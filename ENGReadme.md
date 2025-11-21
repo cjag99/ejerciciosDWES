@@ -1,3 +1,6 @@
+[🇪🇸 Español](./README.md) | [🇬🇧 English](./ENGReadme.md)
+
+
 # DWES Exercises
 
 This repository contains the exercises for the **Server-Side Development (DWES)** module, focused on providing fundamental knowledge of **PHP**.  
