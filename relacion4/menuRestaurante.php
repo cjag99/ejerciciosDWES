@@ -1,11 +1,19 @@
 <?php
+// Página principal del menú de gestión de restaurantes.
+// Usa buffering para capturar mensajes generados por las funciones
+// del gestor y mostrarlos en el lugar adecuado dentro del HTML.
 ob_start();
 include "./Restaurante.php";
 include "./gestorRestaurante.php";
+
+// Inicia/recupera la sesión donde almacenamos la lista de restaurantes.
 session_start();
 if (!isset($_SESSION['restaurantes'])) {
     $_SESSION['restaurantes'] = [];
 }
+
+// Ejecuta la opción solicitada (si existe) y captura la salida
+// en `$outputMessages` para renderizarla más abajo en la página.
 opcionesMenu();
 $outputMessages = ob_get_clean();
 ?>
@@ -31,7 +39,7 @@ $outputMessages = ob_get_clean();
             <h3>Eliga que opción desea ejecutar:</h3>
             <div class="form-check">
 
-                <input class="form-check-input" type="checkbox" id="addRestaurant"  value="addRestaurant" onchange="checkOption('addRestaurant', 'restaurantForm')">
+                <input class="form-check-input" type="checkbox" id="addRestaurant" value="addRestaurant" onchange="checkOption('addRestaurant', 'restaurantForm')">
                 <label class="form-check-label" for="addRestaurant">Añadir nuevo restaurante</label><br>
             </div>
             <div class="container" id="restaurantForm" hidden>
@@ -62,16 +70,18 @@ $outputMessages = ob_get_clean();
                     </div>
 
                     <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                        <button class="btn btn-success me-md-2" name="addRestaurant" type="submit" >
+                        <button class="btn btn-success me-md-2" name="addRestaurant" type="submit">
                             Crear restaurante
                         </button>
                         <button class="btn btn-outline-secondary" type="reset">Borrar</button>
                     </div>
                 </form>
             </div>
-            <div id="options" <?php if (empty($_SESSION['restaurantes'])) { echo 'hidden'; } ?>>
+            <div id="options" <?php if (empty($_SESSION['restaurantes'])) {
+                                    echo 'hidden';
+                                } ?>>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="toString"  value="toString" onclick="checkOption('toString','showRestaurante')">
+                    <input class="form-check-input" type="checkbox" id="toString" value="toString" onclick="checkOption('toString','showRestaurante')">
                     <label class="form-check-label" for="toString"> Mostrar restaurante</label><br>
                 </div>
                 <div id="showRestaurante" hidden>
@@ -86,7 +96,7 @@ $outputMessages = ob_get_clean();
                     </form>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="getRatings"  value="getRatings" onclick="checkOption('getRatings','showRatings')">
+                    <input class="form-check-input" type="checkbox" id="getRatings" value="getRatings" onclick="checkOption('getRatings','showRatings')">
                     <label class="form-check-label" for="getRatings">Obtener nº de valoraciones</label><br>
                 </div>
                 <div id="showRatings" hidden>
@@ -101,7 +111,7 @@ $outputMessages = ob_get_clean();
                     </form>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="addRating"  value="addRating" onclick="checkOption('addRating','addRatingForm')">
+                    <input class="form-check-input" type="checkbox" id="addRating" value="addRating" onclick="checkOption('addRating','addRatingForm')">
                     <label class="form-check-label" for="addRating">Añadir valoración</label><br>
                 </div>
                 <div id="addRatingForm" hidden>
@@ -130,7 +140,7 @@ $outputMessages = ob_get_clean();
                     </form>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="addRatings"  value="addRatings" onclick="checkOption('addRatings','addRatingsForm')">
+                    <input class="form-check-input" type="checkbox" id="addRatings" value="addRatings" onclick="checkOption('addRatings','addRatingsForm')">
                     <label class="form-check-label" for="addRatings">Añadir valoraciones</label><br>
                 </div>
                 <div id="addRatingsForm" hidden>
@@ -167,7 +177,7 @@ $outputMessages = ob_get_clean();
 
                         <button
                             type="submit"
-                             name="averageRating"
+                            name="averageRating"
                             class="btn btn-primary">
                             Mostrar media de valoraciones
                         </button>
@@ -175,7 +185,7 @@ $outputMessages = ob_get_clean();
 
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="destroyRestaurant"  value="destroyRestaurant" onclick="checkOption('destroyRestaurant', 'eraseRestaurantForm')">
+                    <input class="form-check-input" type="checkbox" id="destroyRestaurant" value="destroyRestaurant" onclick="checkOption('destroyRestaurant', 'eraseRestaurantForm')">
                     <label class="form-check-label" for="destroyRestaurant">Eliminar restaurante</label><br>
                 </div>
                 <div class="container" id="eraseRestaurantForm" hidden>
@@ -206,86 +216,88 @@ $outputMessages = ob_get_clean();
                 </div>
                 <div class="container">
                     <form action="sessionClosed.php" method="get">
-                         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
                             <button
                                 type="button"
                                 class="btn btn-danger btn-lg"
                                 data-bs-toggle="modal"
-                                data-bs-target="#modalId"
-                                >
-                            Cerrar sesion
+                                data-bs-target="#modalId">
+                                Cerrar sesion
                             </button>
-                <!-- Modal Body -->
-                <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                            <!-- Modal Body -->
+                            <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
                             <div
-                            class="modal fade"
-                            id="modalId"
-                            tabindex="-1"
-                            data-bs-backdrop="static"
-                            data-bs-keyboard="false"
-                            role="dialog"
-                            aria-labelledby="modalTitleId"
-                            aria-hidden="true"
-                            >
-                            <div
-                                class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
-                                role="document"
-                            >
-                                <div class="modal-content bg-dark text-white">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modalTitleId">Cierre de sesión</h5>
-                                    <button
-                                    type="button"
-                                    class="btn-close"
-                                    data-bs-dismiss="modal"
-                                    aria-label="Close"
-                                    ></button>
-                                </div>
-                                <div class="modal-body">
-                                    Se eliminarán todos los restaurantes ¿Desea cerrar sesión?
-                                </div>
-                                <div class="modal-footer">
-                                    <button
-                                    type="button"
-                                    class="btn btn-secondary"
-                                    data-bs-dismiss="modal"
-                                    >
-                                    Cancelar
-                                    </button>
-                                    <button
-                                    type="submit"
-                                    name="sessionClosed"
-                                    class="btn btn-outline-danger"
-                                    >
-                                    Cerrar sesión
-                                    </button>
-                                </div>
+                                class="modal fade"
+                                id="modalId"
+                                tabindex="-1"
+                                data-bs-backdrop="static"
+                                data-bs-keyboard="false"
+                                role="dialog"
+                                aria-labelledby="modalTitleId"
+                                aria-hidden="true">
+                                <div
+                                    class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm"
+                                    role="document">
+                                    <div class="modal-content bg-dark text-white">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalTitleId">Cierre de sesión</h5>
+                                            <button
+                                                type="button"
+                                                class="btn-close"
+                                                data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Se eliminarán todos los restaurantes ¿Desea cerrar sesión?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button
+                                                type="button"
+                                                class="btn btn-secondary"
+                                                data-bs-dismiss="modal">
+                                                Cancelar
+                                            </button>
+                                            <button
+                                                type="submit"
+                                                name="sessionClosed"
+                                                class="btn btn-outline-danger">
+                                                Cerrar sesión
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            </div>
-                         </div>
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
+        <?php
+        // Recalcula el contador según la sesión
+        Restaurante::recalcNumRest($_SESSION['restaurantes']);
+        ?>
+        <div class="container mt-3 text-center">
+            <h5>Restaurantes registrados:
+                <span class="badge bg-primary"><?php echo Restaurante::totalRests(); ?></span>
+            </h5>
+        </div>
+
     </div>
     <div>
-        <?php 
+        <?php
         echo $outputMessages;
         ?>
     </div>
     <script src="./main.js"></script>
     <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-      crossorigin="anonymous"
-    ></script>
+        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
 
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-      crossorigin="anonymous"
-    ></script>
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

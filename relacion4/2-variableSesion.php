@@ -1,7 +1,16 @@
 <?php
+// Inicio de sesión para mantener las variables entre recargas
 session_start();
-$_SESSION['num1'] = 0;
-$_SESSION['num2'] = 0;
+
+// Inicializa las variables de sesión usadas en la práctica si no existen.
+// `num1` y `num2` se usan como contadores simples para demostrar
+// persistencia de datos en la sesión.
+if (!isset($_SESSION['num1'])) {
+    $_SESSION['num1'] = 0;
+}
+if (!isset($_SESSION['num2'])) {
+    $_SESSION['num2'] = 0;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,51 +18,100 @@ $_SESSION['num2'] = 0;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-        crossorigin="anonymous" />
+    <title>Sesiones</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
 
-<body>
-    <div class="container-fluid w-75 m-auto my-5 bg-light">
-        <form action="<?php echo htmlspecialchars($_SERVER_SERVER['PHP_SELF']); ?>" method="get">
-            <h3>Variables de sesión</h3>
-            <div class="mb-3">
-                <label for="opciones" class="form-label">Menú de opciones:</label>
-                <select
-                    class="form-select form-select-lg"
-                    name="opciones"
-                    id="opciones">
-                    <option selected disabled>Select one</option>
-                    <option value="">Aumentar a</option>
-                    <option value="">Aumentar b</option>
-                    <option value="">Disminuir a</option>
-                    <option value="">Disminuir b</option>
-                    <option value="">Resetear a</option>
-                    <option value="">Resetear b</option>
-                    <option value="">Cerrar sesión</option>
-                </select>
+<body class="bg-light">
+
+    <div class="container mt-5">
+
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h4 class="m-0">Variables de sesión</h4>
             </div>
-            <button
-                type="submit"
-                class="btn btn-primary">
-                Enviar
-            </button>
-        </form>
+
+            <div class="card-body">
+
+                <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="get">
+
+                    <div class="mb-3">
+                        <p class="fs-5">
+                            <strong>num1:</strong>
+                            <span class="badge bg-secondary"><?php echo $_SESSION['num1']; ?></span>
+                            <br>
+                            <strong>num2:</strong>
+                            <span class="badge bg-secondary"><?php echo $_SESSION['num2']; ?></span>
+                        </p>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="opciones" class="form-label fw-semibold">Menú de opciones:</label>
+                        <select class="form-select" name="opciones" id="opciones">
+                            <option selected disabled>Selecciona una opción</option>
+                            <option value="aumentarNum1">Aumentar A</option>
+                            <option value="aumentarNum2">Aumentar B</option>
+                            <option value="disminuirNum1">Disminuir A</option>
+                            <option value="disminuirNum2">Disminuir B</option>
+                            <option value="resetNum1">Resetear A</option>
+                            <option value="resetNum2">Resetear B</option>
+                            <option value="cerrar">Cerrar sesión</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">
+                        Enviar
+                    </button>
+
+                </form>
+                <?php
+                // Maneja la opción seleccionada en el formulario y actualiza
+                // las variables de sesión en consecuencia. Tras modificar la
+                // sesión se recarga la página para evitar reenvío de datos GET.
+                if (isset($_GET['opciones'])) {
+                    $opcion = $_GET['opciones'];
+
+                    switch ($opcion) {
+                        case "aumentarNum1":
+                            $_SESSION['num1']++;
+                            break;
+
+                        case "aumentarNum2":
+                            $_SESSION['num2']++;
+                            break;
+
+                        case "disminuirNum1":
+                            $_SESSION['num1']--;
+                            break;
+
+                        case "disminuirNum2":
+                            $_SESSION['num2']--;
+                            break;
+
+                        case "resetNum1":
+                            $_SESSION['num1'] = 0;
+                            break;
+
+                        case "resetNum2":
+                            $_SESSION['num2'] = 0;
+                            break;
+
+                        case "cerrar":
+                            // Elimina todos los datos de la sesión y la destruye.
+                            session_unset();
+                            session_destroy();
+                    }
+
+                    // Recargar la página tras actualizar para mostrar nuevos valores
+                    header("Location: " . $_SERVER['PHP_SELF']);
+                    exit;
+                }
+                ?>
+            </div>
+        </div>
 
     </div>
-    <script
-        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
 
-    <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>

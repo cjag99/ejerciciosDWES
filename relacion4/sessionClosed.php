@@ -1,7 +1,11 @@
 <?php 
+// Página que se muestra tras cerrar la sesión. Incluye el gestor
+// para poder usar su función `closeSession()` que elimina los
+// objetos guardados en la sesión y destruye la sesión.
 include "./Restaurante.php";
 include "./gestorRestaurante.php";
 session_start();
+// Limpia y destruye la sesión (borra los restaurantes almacenados)
 closeSession();
 
 ?>
